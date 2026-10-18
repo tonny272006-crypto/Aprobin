@@ -921,33 +921,29 @@
     }
 
     /* --------------------------------------------------------------------------
-       SECTION 06: ROTARY SORTER DEMO STYLES
+       SECTION 06: ROTARY SORTER SCHEMATIC STYLES
        -------------------------------------------------------------------------- */
-    .sorter-demo-container {
-      display: grid;
-      grid-template-columns: 1.25fr 1fr;
-      gap: 24px;
-      align-items: stretch;
-      margin-top: 24px;
-    }
-
     .sorter-graphic-card {
       background: var(--surface-card);
       border: 1px solid var(--border-dark);
       border-radius: 8px;
-      padding: 24px;
+      padding: 28px 24px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       position: relative;
+      max-width: 680px;
+      margin: 24px auto 0 auto;
+      width: 100%;
     }
 
     .sorter-svg-wrapper {
       width: 100%;
-      max-width: 440px;
+      max-width: 420px;
       aspect-ratio: 1;
       position: relative;
+      margin: 12px 0 20px 0;
     }
 
     #sorter-carousel-svg {
@@ -956,158 +952,54 @@
       display: block;
     }
 
-    .sorter-ctrl-card {
-      background: var(--surface-card);
-      border: 1px solid var(--border-dark);
-      border-radius: 8px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .sorter-action-btns {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .btn-waste-drop {
-      background: var(--surface-inset);
-      border: 1px solid var(--border-dark);
-      color: var(--text-main);
-      font-family: var(--font-body);
-      font-size: 13px;
-      padding: 12px 14px;
-      border-radius: 6px;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 4px;
-      transition: all 0.2s ease;
-      text-align: left;
-    }
-
-    .btn-waste-drop:hover {
-      background: var(--surface-hover);
-      border-color: #4A75E6;
-    }
-
-    .waste-tag {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      color: #8BB0FF;
-      letter-spacing: 0.4px;
-    }
-
-    .sorter-status-box {
-      background: #0A0A0A;
-      border: 1px solid var(--border-dark);
-      border-radius: 6px;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .sorter-status-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-family: var(--font-mono);
-      font-size: 12px;
-    }
-
-    .sorter-counters-grid {
+    .sorter-legend-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      margin-top: 8px;
+      gap: 12px;
+      width: 100%;
+      border-top: 1px solid var(--border-dark);
+      padding-top: 20px;
     }
 
-    .sorter-counter-card {
+    .sorter-legend-item {
       background: var(--surface-inset);
       border: 1px solid var(--border-dark);
       border-radius: 6px;
-      padding: 10px;
+      padding: 10px 12px;
       text-align: center;
       display: flex;
       flex-direction: column;
       gap: 4px;
     }
 
-    .sorter-counter-num {
+    .sorter-legend-code {
       font-family: var(--font-mono);
-      font-size: 20px;
+      font-size: 13px;
       font-weight: 700;
-      color: var(--accent-green);
+      color: #FFFFFF;
     }
 
-    .sorter-counter-label {
+    .sorter-legend-name {
       font-family: var(--font-mono);
       font-size: 10px;
-      color: var(--text-muted);
+      color: #8BB0FF;
       letter-spacing: 0.4px;
+    }
+
+    .sorter-legend-sub {
+      font-family: var(--font-body);
+      font-size: 11px;
+      color: var(--text-muted);
     }
 
     /* --------------------------------------------------------------------------
        SECTION 07: ARCHITECTURE & ROADMAP STYLES
        -------------------------------------------------------------------------- */
-    .roadmap-section-card {
-      background: var(--surface-card);
-      border: 1px solid var(--border-dark);
-      border-radius: 8px;
-      padding: 24px;
-      margin-top: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-
-    .protocol-table-wrapper {
-      overflow-x: auto;
-    }
-
-    .protocol-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-family: var(--font-mono);
-      font-size: 12.5px;
-      text-align: left;
-    }
-
-    .protocol-table th {
-      border-bottom: 1px solid var(--border-dark);
-      padding: 10px 14px;
-      color: var(--text-muted);
-      font-weight: 600;
-      letter-spacing: 0.6px;
-      text-transform: uppercase;
-      font-size: 11px;
-    }
-
-    .protocol-table td {
-      border-bottom: 1px solid var(--border-subtle);
-      padding: 12px 14px;
-      color: var(--text-main);
-    }
-
-    .protocol-cmd {
-      color: #8BB0FF;
-      font-weight: 600;
-    }
-
-    .protocol-reply {
-      color: var(--accent-green);
-      font-weight: 600;
-    }
-
     .roadmap-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 16px;
-      margin-top: 12px;
+      margin-top: 24px;
     }
 
     .roadmap-phase-card {
@@ -1168,11 +1060,13 @@
     }
 
     @media (max-width: 1024px) {
-      .mission-control-container,
-      .sorter-demo-container {
+      .mission-control-container {
         grid-template-columns: 1fr;
       }
       .roadmap-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .sorter-legend-grid {
         grid-template-columns: 1fr 1fr;
       }
     }
@@ -1190,11 +1084,8 @@
       .roadmap-grid {
         grid-template-columns: 1fr;
       }
-      .sorter-action-btns {
+      .sorter-legend-grid {
         grid-template-columns: 1fr;
-      }
-      .sorter-counters-grid {
-        grid-template-columns: 1fr 1fr;
       }
     }
   </style>
@@ -1664,224 +1555,124 @@
     <section class="report-section" id="section-sorter">
       <div class="section-header">
         <div class="section-num">Section 06 // Sorting Mechanism</div>
-        <h2 class="section-title">4-Quadrant Indexed Rotary Sorter & Hatch Actuation</h2>
+        <h2 class="section-title">4-Quadrant Rotary Carousel & Intake Hatch Geometry</h2>
         <p class="section-desc">
-          Interactive mechanical simulation of the internal rotary indexing carousel. The MG995 high-torque servo rotates the internal partition to align the designated quadrant beneath the gravity-drop intake hatch.
+          Technical schematic of the internal rotary carousel drum (Ø 280 mm). The 4-quadrant acrylic partition isolates recyclables, organics, medical sharps, and biohazard waste beneath the 95 × 95 mm intake chute.
         </p>
       </div>
 
-      <div class="sorter-demo-container">
-        <!-- Left: Carousel Drum SVG cross-section -->
-        <div class="sorter-graphic-card">
-          <div class="mission-map-header" style="width: 100%; margin-bottom: 16px;">
-            <div class="mission-map-title">
-              <span class="live-dot"></span>
-              CAROUSEL DRUM TOP CROSS-SECTION (Ø 280 MM)
-            </div>
-            <div class="mission-map-meta" id="sorter-servo-badge">
-              SERVO 1: 0° [HOMED]
-            </div>
+      <!-- Centered Carousel Drum Schematic View Card -->
+      <div class="sorter-graphic-card">
+        <div class="mission-map-header" style="width: 100%; margin-bottom: 16px;">
+          <div class="mission-map-title">
+            <span class="live-dot"></span>
+            CAROUSEL DRUM TOP CROSS-SECTION (Ø 280 MM)
           </div>
-
-          <div class="sorter-svg-wrapper">
-            <svg id="sorter-carousel-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <radialGradient id="drum-grad" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="#1E1E1E" />
-                  <stop offset="100%" stop-color="#141414" />
-                </radialGradient>
-              </defs>
-
-              <!-- Outer Fixed Chassis Casing -->
-              <circle cx="200" cy="200" r="185" fill="#0A0A0A" stroke="#2A2A2A" stroke-width="2" />
-              <circle cx="200" cy="200" r="180" fill="url(#drum-grad)" stroke="#333333" stroke-width="1" stroke-dasharray="2,4" />
-
-              <!-- Rotating Carousel Drum (Rotates via JS) -->
-              <g id="carousel-rotating-drum" transform="rotate(0 200 200)" style="transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);">
-                <!-- 4 Quadrants Partition Walls (2mm Acrylic Dividers) -->
-                <line x1="200" y1="20" x2="200" y2="380" stroke="#FFFFFF" stroke-width="2.5" />
-                <line x1="20" y1="200" x2="380" y2="200" stroke="#FFFFFF" stroke-width="2.5" />
-                
-                <!-- Center Servo Hub Axis -->
-                <circle cx="200" cy="200" r="28" fill="#141414" stroke="#4A75E6" stroke-width="2" />
-                <circle cx="200" cy="200" r="8" fill="#74C69D" />
-
-                <!-- Quadrant Labels (Strictly High-Contrast) -->
-                <!-- Quadrant B1 (Top-Right: 0° - 90°) -->
-                <g transform="translate(265, 135)">
-                  <text text-anchor="middle" fill="#FFFFFF" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="700">B1</text>
-                  <text y="16" text-anchor="middle" fill="#8BB0FF" font-family="'JetBrains Mono', monospace" font-size="9">RECYCLABLE</text>
-                  <text y="28" text-anchor="middle" fill="#8E929B" font-family="'Inter', sans-serif" font-size="8.5">Paper / Box</text>
-                </g>
-
-                <!-- Quadrant B2 (Bottom-Right: 90° - 180°) -->
-                <g transform="translate(265, 265)">
-                  <text text-anchor="middle" fill="#FFFFFF" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="700">B2</text>
-                  <text y="16" text-anchor="middle" fill="#74C69D" font-family="'JetBrains Mono', monospace" font-size="9">ORGANIC</text>
-                  <text y="28" text-anchor="middle" fill="#8E929B" font-family="'Inter', sans-serif" font-size="8.5">Food / Bio</text>
-                </g>
-
-                <!-- Quadrant B3 (Bottom-Left: 180° - 270°) -->
-                <g transform="translate(135, 265)">
-                  <text text-anchor="middle" fill="#FFFFFF" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="700">B3</text>
-                  <text y="16" text-anchor="middle" fill="#8BB0FF" font-family="'JetBrains Mono', monospace" font-size="9">SHARPS</text>
-                  <text y="28" text-anchor="middle" fill="#8E929B" font-family="'Inter', sans-serif" font-size="8.5">Syringe / Vial</text>
-                </g>
-
-                <!-- Quadrant B4 (Top-Left: 270° - 360°) -->
-                <g transform="translate(135, 135)">
-                  <text text-anchor="middle" fill="#FFFFFF" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="700">B4</text>
-                  <text y="16" text-anchor="middle" fill="#74C69D" font-family="'JetBrains Mono', monospace" font-size="9">BIOHAZARD</text>
-                  <text y="28" text-anchor="middle" fill="#8E929B" font-family="'Inter', sans-serif" font-size="8.5">Gauze / PPE</text>
-                </g>
-              </g>
-
-              <!-- Fixed Top Hatch Aperture (95 x 95 mm intake chute at top) -->
-              <rect x="152" y="16" width="96" height="96" fill="rgba(10, 10, 10, 0.7)" stroke="#4A75E6" stroke-width="2" rx="4" />
-              <!-- Trapdoor Flap Indicator -->
-              <g id="sorter-trapdoor-flap" transform="translate(152, 16)" style="transition: transform 0.3s ease;">
-                <rect x="0" y="0" width="96" height="96" fill="rgba(74, 117, 230, 0.18)" stroke="#74C69D" stroke-width="1.5" stroke-dasharray="4,2" />
-                <text x="48" y="52" text-anchor="middle" fill="#FFFFFF" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600" id="hatch-status-text">HATCH: CLOSED</text>
-              </g>
-
-              <!-- Optical Sensor Beam (Top entry) -->
-              <line x1="145" y1="64" x2="255" y2="64" stroke="#74C69D" stroke-width="1.5" stroke-dasharray="3,3" id="optical-sensor-beam" opacity="0.6" />
-            </svg>
+          <div class="mission-map-meta">
+            4 COMPARTMENTS • 90° SEPARATION
           </div>
         </div>
 
-        <!-- Right: Drop Simulator & Controls -->
-        <div class="sorter-ctrl-card">
-          <div class="telemetry-hdr">SIMULATE ITEM INTAKE</div>
-          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">
-            Select a test medical waste item to drop into the intake hopper. The system simulates optical beam trigger, AI classification, MG995 indexing, and gravity-drop actuation.
-          </p>
+        <div class="sorter-svg-wrapper">
+          <svg id="sorter-carousel-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="drum-grad" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#1E1E1E" />
+                <stop offset="100%" stop-color="#141414" />
+              </radialGradient>
+            </defs>
 
-          <div class="sorter-action-btns">
-            <button class="btn-waste-drop" data-type="paper">
-              <span class="waste-tag">SECTION B1 • 0°</span>
-              <strong>Paper Box / Wrapper</strong>
-            </button>
-            <button class="btn-waste-drop" data-type="organic">
-              <span class="waste-tag">SECTION B2 • 90°</span>
-              <strong>Food Waste / Scraps</strong>
-            </button>
-            <button class="btn-waste-drop" data-type="sharps">
-              <span class="waste-tag">SECTION B3 • 180°</span>
-              <strong>Plastic Syringe / Vial</strong>
-            </button>
-            <button class="btn-waste-drop" data-type="biohazard">
-              <span class="waste-tag">SECTION B4 • 270°</span>
-              <strong>Soiled Gauze / Mask</strong>
-            </button>
+            <!-- Outer Fixed Chassis Casing -->
+            <circle cx="200" cy="200" r="185" fill="#0A0A0A" stroke="#2A2A2A" stroke-width="2" />
+            <circle cx="200" cy="200" r="180" fill="url(#drum-grad)" stroke="#333333" stroke-width="1" stroke-dasharray="2,4" />
+
+            <!-- Carousel Drum Core Structure -->
+            <g id="carousel-rotating-drum" transform="rotate(0 200 200)">
+              <!-- 4 Quadrants Partition Walls (2mm Acrylic Dividers) -->
+              <line x1="200" y1="20" x2="200" y2="380" stroke="#FFFFFF" stroke-width="2.5" />
+              <line x1="20" y1="200" x2="380" y2="200" stroke="#FFFFFF" stroke-width="2.5" />
+              
+              <!-- Center Servo Hub Axis -->
+              <circle cx="200" cy="200" r="28" fill="#141414" stroke="#4A75E6" stroke-width="2" />
+              <circle cx="200" cy="200" r="8" fill="#74C69D" />
+
+              <!-- Quadrant Labels (Strictly High-Contrast) -->
+              <!-- Quadrant B1 (Top-Right: 0° - 90°) -->
+              <g transform="translate(265, 135)">
+                <text text-anchor="middle" fill="#FFFFFF" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="700">B1</text>
+                <text y="16" text-anchor="middle" fill="#8BB0FF" font-family="'JetBrains Mono', monospace" font-size="9">RECYCLABLE</text>
+                <text y="28" text-anchor="middle" fill="#8E929B" font-family="'Inter', sans-serif" font-size="8.5">Paper / Box</text>
+              </g>
+
+              <!-- Quadrant B2 (Bottom-Right: 90° - 180°) -->
+              <g transform="translate(265, 265)">
+                <text text-anchor="middle" fill="#FFFFFF" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="700">B2</text>
+                <text y="16" text-anchor="middle" fill="#74C69D" font-family="'JetBrains Mono', monospace" font-size="9">ORGANIC</text>
+                <text y="28" text-anchor="middle" fill="#8E929B" font-family="'Inter', sans-serif" font-size="8.5">Food / Bio</text>
+              </g>
+
+              <!-- Quadrant B3 (Bottom-Left: 180° - 270°) -->
+              <g transform="translate(135, 265)">
+                <text text-anchor="middle" fill="#FFFFFF" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="700">B3</text>
+                <text y="16" text-anchor="middle" fill="#8BB0FF" font-family="'JetBrains Mono', monospace" font-size="9">SHARPS</text>
+                <text y="28" text-anchor="middle" fill="#8E929B" font-family="'Inter', sans-serif" font-size="8.5">Syringe / Vial</text>
+              </g>
+
+              <!-- Quadrant B4 (Top-Left: 270° - 360°) -->
+              <g transform="translate(135, 135)">
+                <text text-anchor="middle" fill="#FFFFFF" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="700">B4</text>
+                <text y="16" text-anchor="middle" fill="#74C69D" font-family="'JetBrains Mono', monospace" font-size="9">BIOHAZARD</text>
+                <text y="28" text-anchor="middle" fill="#8E929B" font-family="'Inter', sans-serif" font-size="8.5">Gauze / PPE</text>
+              </g>
+            </g>
+
+            <!-- Fixed Top Hatch Aperture (95 x 95 mm intake chute at top) -->
+            <rect x="152" y="16" width="96" height="96" fill="rgba(10, 10, 10, 0.7)" stroke="#4A75E6" stroke-width="2" rx="4" />
+            <g id="sorter-trapdoor-flap" transform="translate(152, 16)">
+              <rect x="0" y="0" width="96" height="96" fill="rgba(74, 117, 230, 0.18)" stroke="#74C69D" stroke-width="1.5" stroke-dasharray="4,2" />
+              <text x="48" y="52" text-anchor="middle" fill="#FFFFFF" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600">INTAKE CHUTE (95×95mm)</text>
+            </g>
+
+            <!-- Optical Sensor Beam (Top entry) -->
+            <line x1="145" y1="64" x2="255" y2="64" stroke="#74C69D" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.6" />
+          </svg>
+        </div>
+
+        <!-- 4-Quadrant Specifications Legend Grid -->
+        <div class="sorter-legend-grid">
+          <div class="sorter-legend-item">
+            <span class="sorter-legend-code">B1</span>
+            <span class="sorter-legend-name">RECYCLABLE</span>
+            <span class="sorter-legend-sub">Paper, Box & Dry Packaging</span>
           </div>
-
-          <!-- Status Telemetry Readout -->
-          <div class="sorter-status-box">
-            <div class="sorter-status-row">
-              <span class="tel-label">INTAKE BEAM SENSOR</span>
-              <span class="tel-val pass" id="st-beam">CLEAR [IDLE]</span>
-            </div>
-            <div class="sorter-status-row">
-              <span class="tel-label">EDGE AI CLASSIFIER</span>
-              <span class="tel-val" id="st-ai">STANDBY</span>
-            </div>
-            <div class="sorter-status-row">
-              <span class="tel-label">MG995 DRUM SERVO</span>
-              <span class="tel-val mono-blue" id="st-drum">0.0° [HOMED]</span>
-            </div>
-            <div class="sorter-status-row">
-              <span class="tel-label">TRAPDOOR HATCH SERVO</span>
-              <span class="tel-val" id="st-hatch">CLOSED (LOCKED)</span>
-            </div>
+          <div class="sorter-legend-item">
+            <span class="sorter-legend-code">B2</span>
+            <span class="sorter-legend-name" style="color: #74C69D;">ORGANIC</span>
+            <span class="sorter-legend-sub">Food Scraps & Biodegradables</span>
           </div>
-
-          <!-- Chamber Item Counters -->
-          <div>
-            <div class="telemetry-hdr" style="margin-bottom: 8px;">CHAMBER INVENTORY COUNTERS</div>
-            <div class="sorter-counters-grid">
-              <div class="sorter-counter-card">
-                <span class="sorter-counter-num" id="cnt-b1">0</span>
-                <span class="sorter-counter-label">B1 RECYCLE</span>
-              </div>
-              <div class="sorter-counter-card">
-                <span class="sorter-counter-num" id="cnt-b2">0</span>
-                <span class="sorter-counter-label">B2 ORGANIC</span>
-              </div>
-              <div class="sorter-counter-card">
-                <span class="sorter-counter-num" id="cnt-b3">0</span>
-                <span class="sorter-counter-label">B3 SHARPS</span>
-              </div>
-              <div class="sorter-counter-card">
-                <span class="sorter-counter-num" id="cnt-b4">0</span>
-                <span class="sorter-counter-label">B4 BIOHAZARD</span>
-              </div>
-            </div>
+          <div class="sorter-legend-item">
+            <span class="sorter-legend-code">B3</span>
+            <span class="sorter-legend-name">SHARPS</span>
+            <span class="sorter-legend-sub">Vials, Needles & Rigid Plastic</span>
+          </div>
+          <div class="sorter-legend-item">
+            <span class="sorter-legend-code">B4</span>
+            <span class="sorter-legend-name" style="color: #74C69D;">BIOHAZARD</span>
+            <span class="sorter-legend-sub">Soiled Gauze, Masks & PPE</span>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ======================================================================
-         SECTION 07: COMMAND PROTOCOL & 4-PHASE ROADMAP
+         SECTION 07: 4-PHASE IMPLEMENTATION ROADMAP
          ====================================================================== -->
     <section class="report-section" id="section-roadmap">
       <div class="section-header">
         <div class="section-num">Section 07 // Architecture & Roadmap</div>
-        <h2 class="section-title">Command Language Protocol & 4-Phase System Roadmap</h2>
+        <h2 class="section-title">4-Phase Engineering & Implementation Roadmap</h2>
         <p class="section-desc">
-          Unified hardware abstraction layer establishing rigid communication specifications between the embedded Arduino microcontroller and high-level controllers (Android App / Raspberry Pi 3B+).
-        </p>
-      </div>
-
-      <!-- Command Protocol Card -->
-      <div class="roadmap-section-card">
-        <div class="telemetry-hdr">HARDWARE ABSTRACTION LAYER (HAL) // UNIFIED COMMAND PROTOCOL</div>
-        <div class="protocol-table-wrapper">
-          <table class="protocol-table">
-            <thead>
-              <tr>
-                <th>Command</th>
-                <th>Meaning & Function</th>
-                <th>Sender (Phase 1)</th>
-                <th>Sender (Phase 3)</th>
-                <th>Arduino Response</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="protocol-cmd">F&lt;cm&gt;</td>
-                <td>Drive forward specified distance (defaults to 300cm in Phase 1) with closed-loop MPU6050 yaw heading stabilization</td>
-                <td>Android App (BT HC-05)</td>
-                <td>Raspberry Pi (USB CDC)</td>
-                <td class="protocol-reply">DONE\n</td>
-              </tr>
-              <tr>
-                <td class="protocol-cmd">L / R</td>
-                <td>Execute sharp 90° orthogonal turn (Left CCW / Right CW) using integrated gyro yaw feedback</td>
-                <td>Android App (BT HC-05)</td>
-                <td>Raspberry Pi (USB CDC)</td>
-                <td class="protocol-reply">DONE\n</td>
-              </tr>
-              <tr>
-                <td class="protocol-cmd">X</td>
-                <td>Emergency Stop: instantly disables H-bridge motor driver outputs and halts ongoing routines</td>
-                <td>Android App (BT HC-05)</td>
-                <td>Raspberry Pi (USB CDC)</td>
-                <td class="protocol-reply">STOPPED\n</td>
-              </tr>
-              <tr>
-                <td class="protocol-cmd">B1 – B4</td>
-                <td>Run multi-stage sort sequence: rotate carousel drum to section 1–4, open hatch, hold 1.5s, close hatch, return to home</td>
-                <td>Android App (Manual Test)</td>
-                <td>Raspberry Pi (Auto AI)</td>
-                <td class="protocol-reply">DONE\n</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-top: 8px;">
-          <strong style="color: #FFFFFF;">Core Architectural Rule:</strong> In Phase 1, the smartphone sends these ASCII strings over Bluetooth. In Phase 3, the Raspberry Pi 3B+ sends the exact same commands over a USB serial cable. The Arduino firmware remains 100% identical throughout the lifecycle.
+          Phased development plan decoupling mechanical fabrication, embedded motor control, Edge AI classification, and clinical navigation.
         </p>
       </div>
 
@@ -3047,121 +2838,7 @@
         });
       });
 
-      // ========================================================================
-      // SECTION 06: ROTARY WASTE SORTER INTERACTION
-      // ========================================================================
-      const rotatingDrum = document.getElementById('carousel-rotating-drum');
-      const trapdoorFlap = document.getElementById('sorter-trapdoor-flap');
-      const hatchStatusText = document.getElementById('hatch-status-text');
-      const sorterServoBadge = document.getElementById('sorter-servo-badge');
-      const stBeam = document.getElementById('st-beam');
-      const stAi = document.getElementById('st-ai');
-      const stDrum = document.getElementById('st-drum');
-      const stHatch = document.getElementById('st-hatch');
 
-      const counters = {
-        b1: 0,
-        b2: 0,
-        b3: 0,
-        b4: 0,
-      };
-
-      const WASTE_MAPPING = {
-        paper: { code: 'B1', angle: 0, name: 'PAPER / CARDBOARD', class: 'RECYCLABLE (B1)', conf: '98.2%' },
-        organic: { code: 'B2', angle: -90, name: 'FOOD SCRAPS', class: 'ORGANIC WASTE (B2)', conf: '95.6%' },
-        sharps: { code: 'B3', angle: -180, name: 'PLASTIC SYRINGE', class: 'SHARPS / VIALS (B3)', conf: '97.4%' },
-        biohazard: { code: 'B4', angle: -270, name: 'SOILED GAUZE', class: 'BIOHAZARD (B4)', conf: '99.1%' },
-      };
-
-      let isSorting = false;
-
-      async function runSortCycle(wasteType) {
-        if (isSorting) return;
-        isSorting = true;
-        const info = WASTE_MAPPING[wasteType];
-        if (!info) return;
-
-        // Step 1: Beam sensor trigger
-        if (stBeam) {
-          stBeam.textContent = 'TRIGGERED [ITEM DETECTED]';
-          stBeam.className = 'tel-val mono-blue';
-        }
-        if (stAi) {
-          stAi.textContent = 'INFERENCING...';
-          stAi.className = 'tel-val';
-        }
-        await sleep(350);
-
-        // Step 2: AI inference result
-        if (stAi) {
-          stAi.textContent = `${info.class} (${info.conf})`;
-          stAi.className = 'tel-val pass';
-        }
-        await sleep(300);
-
-        // Step 3: Rotate MG995 Drum Servo
-        if (stDrum) {
-          stDrum.textContent = `INDEXING TO ${info.code} (${Math.abs(info.angle)}°)`;
-        }
-        if (sorterServoBadge) {
-          sorterServoBadge.textContent = `SERVO 1: ${Math.abs(info.angle)}° [${info.code}]`;
-        }
-        if (rotatingDrum) {
-          rotatingDrum.style.transform = `rotate(${info.angle}deg)`;
-        }
-        await sleep(700);
-
-        // Step 4: Open Hatch Servo
-        if (stHatch) {
-          stHatch.textContent = 'OPENING (1.2S DUMP)';
-          stHatch.className = 'tel-val mono-blue';
-        }
-        if (hatchStatusText) hatchStatusText.textContent = 'HATCH: OPEN';
-        if (trapdoorFlap) {
-          trapdoorFlap.style.transform = 'translate(152px, 16px) scale(0.25)';
-          trapdoorFlap.style.opacity = '0.35';
-        }
-        await sleep(1200);
-
-        // Step 5: Close Hatch Servo
-        if (stHatch) stHatch.textContent = 'CLOSING...';
-        if (trapdoorFlap) {
-          trapdoorFlap.style.transform = 'translate(152px, 16px) scale(1)';
-          trapdoorFlap.style.opacity = '1';
-        }
-        if (hatchStatusText) hatchStatusText.textContent = 'HATCH: CLOSED';
-        await sleep(400);
-        if (stHatch) {
-          stHatch.textContent = 'CLOSED (LOCKED)';
-          stHatch.className = 'tel-val';
-        }
-
-        // Step 6: Return Drum to Home (0 deg)
-        if (stDrum) stDrum.textContent = 'RETURNING TO 0° [HOMING]';
-        if (rotatingDrum) {
-          rotatingDrum.style.transform = 'rotate(0deg)';
-        }
-        if (sorterServoBadge) sorterServoBadge.textContent = 'SERVO 1: 0° [HOMED]';
-        await sleep(700);
-        if (stDrum) stDrum.textContent = '0.0° [HOMED]';
-
-        // Step 7: Update Counter
-        counters[info.code.toLowerCase()]++;
-        const cntEl = document.getElementById(`cnt-${info.code.toLowerCase()}`);
-        if (cntEl) cntEl.textContent = counters[info.code.toLowerCase()];
-
-        if (stBeam) {
-          stBeam.textContent = 'CLEAR [IDLE]';
-          stBeam.className = 'tel-val pass';
-        }
-        isSorting = false;
-      }
-
-      document.querySelectorAll('.btn-waste-drop').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          runSortCycle(btn.getAttribute('data-type'));
-        });
-      });
 
       // ------------------------------------------------------------------------
       // Initialize
