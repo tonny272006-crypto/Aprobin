@@ -1,0 +1,1777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROBOBIN AGV-CL1 // Product Engineering & Laser Cut Report</title>
+  
+  <!-- Typography: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Three.js & OrbitControls -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <!-- Pre-bundled 3D CAD Model (Zero-Import Standalone Deployment) -->
+  <script src="embedded_model.js"></script>
+  <script>
+    window.addEventListener('error', function(e) {
+      if (e.target && e.target.tagName === 'SCRIPT') {
+        console.warn('Script CDN fallback notice:', e.target.src);
+      }
+    }, true);
+  </script>
+
+  <style>
+    /* ==========================================================================
+       MINIMALIST ARCHITECTURAL DESIGN SYSTEM
+       Strict Palette:
+       - Black: #000000 / #0A0A0A
+       - White: #FFFFFF / #F8F9FA
+       - Gray:  #141414, #1E1E1E, #2A2A2A, #888888, #E0E0E0
+       - Blue:  #4A75E6 (Primary Interactive Accent)
+       - Green: #74C69D (Dimensions & Certified Pass Accent)
+       - All other colors eliminated.
+       ========================================================================== */
+    :root {
+      --bg-canvas: #0A0A0A;
+      --surface-card: #141414;
+      --surface-inset: #1A1A1A;
+      --surface-hover: #222222;
+      --border-dark: #2A2A2A;
+      --border-subtle: #1E1E1E;
+      --accent-blue: #4A75E6;
+      --accent-blue-hover: #5B85F5;
+      --accent-blue-subtle: rgba(74, 117, 230, 0.12);
+      --accent-green: #74C69D;
+      --accent-green-subtle: rgba(116, 198, 157, 0.12);
+      --text-main: #FFFFFF;
+      --text-muted: #8E929B;
+      --text-dim: #5A5E67;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.75;
+      overflow-x: hidden;
+      width: 100vw;
+    }
+
+    /* --------------------------------------------------------------------------
+       TOP STICKY MINIMALIST NAVIGATION BAR
+       -------------------------------------------------------------------------- */
+    .report-nav {
+      position: sticky;
+      top: 0;
+      height: 58px;
+      background: rgba(10, 10, 10, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-dark);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      z-index: 100;
+      user-select: none;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-brand {
+      font-size: 14.5px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 3px;
+      background: var(--accent-blue-subtle);
+      border: 1px solid rgba(74, 117, 230, 0.35);
+      color: #8BB0FF;
+      font-weight: 500;
+      letter-spacing: 0.4px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      letter-spacing: 0.4px;
+      transition: color 0.15s ease;
+    }
+
+    .nav-link:hover {
+      color: #FFFFFF;
+    }
+
+    .nav-link.active {
+      color: var(--accent-green);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-nav {
+      background: var(--surface-inset);
+      border: 1px solid var(--border-dark);
+      color: var(--text-main);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 6px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-nav:hover {
+      background: var(--surface-hover);
+      border-color: #444444;
+      color: #FFFFFF;
+    }
+
+    .btn-nav.primary {
+      background: var(--accent-blue);
+      border-color: var(--accent-blue);
+      color: #FFFFFF;
+    }
+
+    .btn-nav.primary:hover {
+      background: var(--accent-blue-hover);
+    }
+
+    .file-input-hidden {
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    /* --------------------------------------------------------------------------
+       SECTION 1: HERO 3D INTERACTIVE WORKSPACE
+       -------------------------------------------------------------------------- */
+    .hero-viewport-section {
+      width: 100%;
+      height: calc(100vh - 58px);
+      min-height: 580px;
+      position: relative;
+      background: #FFFFFF;
+      overflow: hidden;
+    }
+
+    #webgl-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      cursor: grab;
+    }
+
+    #webgl-canvas:active {
+      cursor: grabbing;
+    }
+
+    /* Top-Left Minimalist Watermark */
+    .viewport-meta-left {
+      position: absolute;
+      top: 22px;
+      left: 28px;
+      pointer-events: none;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-family: var(--font-mono);
+    }
+
+    .v-meta-title {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #000000;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+    }
+
+    .v-meta-sub {
+      font-size: 11.5px;
+      color: #666666;
+    }
+
+    /* Top-Right Bounding Box Pill */
+    .viewport-meta-right {
+      position: absolute;
+      top: 22px;
+      right: 28px;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid #000000;
+      padding: 7px 15px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: #000000;
+      font-weight: 600;
+      pointer-events: none;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .v-meta-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-green);
+    }
+
+    /* Floating Viewport Controls (Bottom Center) */
+    .viewport-bottom-controls {
+      position: absolute;
+      bottom: 26px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      background: rgba(10, 10, 10, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border-dark);
+      border-radius: 8px;
+      padding: 5px;
+      gap: 4px;
+      z-index: 20;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+    }
+
+    .ctrl-group {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .ctrl-sep {
+      width: 1px;
+      height: 20px;
+      background: #2A2A2A;
+      margin: 0 6px;
+    }
+
+    .ctrl-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 6px 13px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .ctrl-btn:hover {
+      background: var(--surface-inset);
+      color: #FFFFFF;
+    }
+
+    .ctrl-btn.active {
+      background: var(--accent-blue);
+      color: #FFFFFF;
+      font-weight: 500;
+    }
+
+    .ctrl-btn.active.green {
+      background: rgba(116, 198, 157, 0.2);
+      color: var(--accent-green);
+    }
+
+    /* Scroll Down Indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 84px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: #777777;
+      letter-spacing: 0.8px;
+      pointer-events: none;
+      animation: floatPrompt 2.5s infinite ease-in-out;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-transform: uppercase;
+    }
+
+    @keyframes floatPrompt {
+      0%, 100% { transform: translate(-50%, 0); opacity: 0.7; }
+      50% { transform: translate(-50%, 5px); opacity: 1; }
+    }
+
+    /* Dropzone / CORS Overlay */
+    .dropzone-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 10, 10, 0.92);
+      backdrop-filter: blur(8px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .dropzone-overlay.hidden {
+      display: none;
+    }
+
+    .dropzone-box {
+      background: var(--surface-card);
+      border: 1px dashed var(--border-dark);
+      border-radius: 8px;
+      padding: 40px 54px;
+      max-width: 520px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .dropzone-box.drag-over {
+      border-color: var(--accent-blue);
+      background: #181C26;
+    }
+
+    /* --------------------------------------------------------------------------
+       REPORT DOCUMENT CONTENT CONTAINER
+       -------------------------------------------------------------------------- */
+    .report-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 70px 36px 120px;
+      display: flex;
+      flex-direction: column;
+      gap: 72px;
+    }
+
+    /* Section Headers */
+    .section-header {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-bottom: 1px solid var(--border-dark);
+      padding-bottom: 20px;
+    }
+
+    .section-num {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--accent-green);
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-size: 26px;
+      font-weight: 500;
+      color: #FFFFFF;
+      letter-spacing: -0.3px;
+    }
+
+    .section-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 840px;
+      line-height: 1.7;
+    }
+
+    /* --------------------------------------------------------------------------
+       SECTION 2: EXECUTIVE ENGINEERING METRICS GRID
+       -------------------------------------------------------------------------- */
+    .metrics-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .metric-card {
+      background: var(--surface-card);
+      border: 1px solid var(--border-dark);
+      border-radius: 6px;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .metric-lbl {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .metric-val {
+      font-family: var(--font-mono);
+      font-size: 18.5px;
+      font-weight: 500;
+      color: #FFFFFF;
+    }
+
+    .metric-val.green {
+      color: var(--accent-green);
+    }
+
+    .metric-val.blue {
+      color: #8BB0FF;
+    }
+
+    .metric-note {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* --------------------------------------------------------------------------
+       SECTION 3: LASER CUT FABRICATION SHEETS (STRICTLY BLACK & WHITE)
+       -------------------------------------------------------------------------- */
+    .sheet-viewer-module {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    /* Sheet Selector Tabs Bar */
+    .sheet-tabs-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .sheet-pill-list {
+      display: flex;
+      gap: 5px;
+      background: var(--surface-card);
+      border: 1px solid var(--border-dark);
+      border-radius: 6px;
+      padding: 4px;
+    }
+
+    .sheet-tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      padding: 7px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .sheet-tab-btn:hover {
+      color: #FFFFFF;
+    }
+
+    .sheet-tab-btn.active {
+      background: #FFFFFF;
+      color: #000000;
+      font-weight: 600;
+    }
+
+    .sheet-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Strictly White Background Technical Sheet Stage */
+    .sheet-display-card {
+      background: #FFFFFF;
+      border: 1px solid #000000;
+      border-radius: 4px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .sheet-title-stamp {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #000000;
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      font-family: var(--font-mono);
+      color: #000000;
+    }
+
+    .stamp-id {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .stamp-specs {
+      font-size: 12.5px;
+      color: #333333;
+    }
+
+    .sheet-svg-wrapper {
+      width: 100%;
+      max-width: 680px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #FFFFFF;
+    }
+
+    .sheet-svg-wrapper svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Cut Paths: Strictly Solid Black with Clean Interaction */
+    .vector-cut-path {
+      fill: #FFFFFF;
+      stroke: #000000;
+      stroke-width: 0.8;
+      cursor: pointer;
+      transition: fill 0.15s ease, stroke 0.15s ease;
+    }
+
+    .vector-cut-path:hover,
+    .vector-cut-path.active {
+      fill: var(--accent-green-subtle) !important;
+      stroke: var(--accent-green) !important;
+      stroke-width: 1.4 !important;
+    }
+
+    /* Dynamic Part Inspector Footer */
+    .sheet-inspector-footer {
+      width: 100%;
+      margin-top: 24px;
+      border-top: 1px solid #E5E5E5;
+      padding-top: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      color: #000000;
+      font-size: 13px;
+    }
+
+    .inspector-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .insp-chip {
+      background: #000000;
+      color: #FFFFFF;
+      padding: 4px 10px;
+      border-radius: 3px;
+      font-weight: 600;
+      font-size: 12px;
+    }
+
+    .inspector-right {
+      color: #555555;
+    }
+
+    /* --------------------------------------------------------------------------
+       SECTION 4: COMPLETE 6-SHEET NEST OVERVIEW (STRICTLY BLACK & WHITE)
+       -------------------------------------------------------------------------- */
+    .nest-overview-card {
+      background: #FFFFFF;
+      border: 1px solid #000000;
+      border-radius: 4px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .nest-img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #000000;
+      display: block;
+      filter: grayscale(100%) contrast(140%) brightness(100%);
+    }
+
+    /* Minimalist Footer */
+    .report-footer {
+      border-top: 1px solid var(--border-dark);
+      padding: 34px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-dim);
+      user-select: none;
+    }
+
+    @media (max-width: 900px) {
+      .metrics-summary-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================
+       TOP STICKY MINIMALIST NAVIGATION BAR
+       ======================================================================== -->
+  <nav class="report-nav">
+    <div class="nav-left">
+      <div class="nav-brand">
+        ROBOBIN AGV-CL1
+        <span class="nav-tag">PRODUCT REPORT</span>
+      </div>
+    </div>
+
+    <div class="nav-links">
+      <a href="#section-3d" class="nav-link active">01 3D WORKSPACE</a>
+      <a href="#section-summary" class="nav-link">02 SPECIFICATIONS</a>
+      <a href="#section-sheets" class="nav-link">03 CUT SHEETS</a>
+      <a href="#section-nest" class="nav-link">04 NEST LAYOUT</a>
+    </div>
+
+    <div class="nav-actions">
+      <div class="file-input-wrapper" style="position:relative; overflow:hidden;">
+        <button class="btn-nav">
+          Load Custom STL
+        </button>
+        <input type="file" id="stl-file-picker" accept=".stl" class="file-input-hidden">
+      </div>
+      <button class="btn-nav primary" id="btn-export-blueprint">
+        Export Blueprint
+      </button>
+    </div>
+  </nav>
+
+  <!-- ========================================================================
+       SECTION 1: HERO 3D INTERACTIVE WORKSPACE
+       ======================================================================== -->
+  <section class="hero-viewport-section" id="section-3d">
+    <canvas id="webgl-canvas"></canvas>
+
+    <!-- Top-Left Minimalist Watermark -->
+    <div class="viewport-meta-left">
+      <div class="v-meta-title">ROBOBIN AGV-CL1 // TECHNICAL PERSPECTIVE</div>
+      <div class="v-meta-sub">1:1 METRIC CAD VIEWPORT • ORTHO-ISOMETRIC PROJECTION</div>
+    </div>
+
+    <!-- Top-Right Bounding Box Pill -->
+    <div class="viewport-meta-right">
+      <span class="v-meta-dot"></span>
+      <span id="v-bounds-text">307.0 × 352.6 × 378.0 mm</span>
+    </div>
+
+    <!-- Floating Viewport Controls (Bottom Center) -->
+    <div class="viewport-bottom-controls">
+      <div class="ctrl-group">
+        <button class="ctrl-btn active" data-view="isometric">ISO</button>
+        <button class="ctrl-btn" data-view="top">TOP</button>
+        <button class="ctrl-btn" data-view="front">FRONT</button>
+        <button class="ctrl-btn" data-view="right">RIGHT</button>
+        <button class="ctrl-btn" id="btn-reset-cam">RESET</button>
+      </div>
+      <div class="ctrl-sep"></div>
+      <div class="ctrl-group">
+        <button class="ctrl-btn active green" id="btn-toggle-dims">DIMENSIONS</button>
+        <button class="ctrl-btn active" id="btn-toggle-edges">EDGES</button>
+        <button class="ctrl-btn" id="btn-toggle-rotate">ROTATE</button>
+      </div>
+    </div>
+
+    <!-- Scroll Down Indicator -->
+    <div class="scroll-indicator">
+      <span>Scroll for Laser Cut Report</span> &darr;
+    </div>
+
+    <!-- Dropzone / CORS Fallback Modal -->
+    <div class="dropzone-overlay hidden" id="dropzone-overlay">
+      <div class="dropzone-box" id="dropzone-box">
+        <div style="font-size: 15px; font-weight: 600; color: #FFFFFF;">Load 3D CAD STL File</div>
+        <div style="font-size: 12px; color: var(--text-muted); line-height: 1.6;">
+          Browser local security (CORS) restricted direct fetch for <code>Cool Jarv-Blad.stl</code> when opened via <code>file:///</code>.
+          <br><br>
+          Please drop <strong>Cool Jarv-Blad.stl</strong> here or click below to select it from this folder.
+        </div>
+        <div style="position:relative; overflow:hidden; margin-top:8px;">
+          <button class="btn-nav primary" style="padding: 8px 20px;">Select Cool Jarv-Blad.stl</button>
+          <input type="file" id="modal-file-picker" accept=".stl" class="file-input-hidden">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       REPORT DOCUMENT CONTENT
+       ======================================================================== -->
+  <main class="report-container">
+
+    <!-- ======================================================================
+         SECTION 2: EXECUTIVE ENGINEERING SPECIFICATIONS
+         ====================================================================== -->
+    <section class="report-section" id="section-summary">
+      <div class="section-header">
+        <div class="section-num">Section 02 // Specifications</div>
+        <h2 class="section-title">RoboBin Physical & Fabrication Metrics</h2>
+        <p class="section-desc">
+          Derived geometric properties from 3D tessellation and laser cutting CAM layout for the autonomous mobile waste sorting airframe.
+        </p>
+      </div>
+
+      <div class="metrics-summary-grid">
+        <div class="metric-card">
+          <span class="metric-lbl">3D Bounding Envelope</span>
+          <span class="metric-val green">307 × 353 × 378 mm</span>
+          <span class="metric-note">Width × Depth × Height</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-lbl">Displacement Volume</span>
+          <span class="metric-val">1,372.7 cm³</span>
+          <span class="metric-note">1.373 Liters displacement</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-lbl">Wetted Polyhedral Skin</span>
+          <span class="metric-val">1,310.65 cm²</span>
+          <span class="metric-note">130,296 Facet Tessellation</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-lbl">Laser Stock Acrylic</span>
+          <span class="metric-val blue">6 Sheets (300×450mm)</span>
+          <span class="metric-note">2.0 mm Extruded Acrylic</span>
+        </div>
+
+        <div class="metric-card">
+          <span class="metric-lbl">Total Parts Yield</span>
+          <span class="metric-val green">30 Components</span>
+          <span class="metric-note">9 Unique Part Profiles</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-lbl">Material Efficiency</span>
+          <span class="metric-val">~72.4% Yield</span>
+          <span class="metric-note">Optimized 2D sheet nesting</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-lbl">Part Separation Bridge</span>
+          <span class="metric-val">3.0 mm Spacing</span>
+          <span class="metric-note">Zero kerf butt-glued joints</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-lbl">Center of Gravity</span>
+          <span class="metric-val blue">Y = 48.5 mm</span>
+          <span class="metric-note">Low-CG anti-rollover base</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 3: LASER CUT FABRICATION SHEETS (STRICTLY BLACK & WHITE)
+         ====================================================================== -->
+    <section class="report-section" id="section-sheets">
+      <div class="section-header">
+        <div class="section-num">Section 03 // Cutout Drawings</div>
+        <h2 class="section-title">Laser Cutting Profiles & Part Dimension Callouts</h2>
+        <p class="section-desc">
+          Strictly black and white vector engineering drawings for all 6 acrylic sheets (300 × 450 mm). All part outlines feature annotated dimension callouts. Hover on any part to inspect component telemetry.
+        </p>
+      </div>
+
+      <div class="sheet-viewer-module">
+        <!-- Sheet Selector Tabs Bar -->
+        <div class="sheet-tabs-bar">
+          <div class="sheet-pill-list" id="sheet-pill-list">
+            <button class="sheet-tab-btn active" data-sheet="1">Sheet 01</button>
+            <button class="sheet-tab-btn" data-sheet="2">Sheet 02</button>
+            <button class="sheet-tab-btn" data-sheet="3">Sheet 03</button>
+            <button class="sheet-tab-btn" data-sheet="4">Sheet 04</button>
+            <button class="sheet-tab-btn" data-sheet="5">Sheet 05</button>
+            <button class="sheet-tab-btn" data-sheet="6">Sheet 06</button>
+          </div>
+
+          <div class="sheet-actions">
+            <a class="btn-nav" id="btn-dl-svg" download="cut_ready_sheet1.svg" href="cut_ready_sheet1.svg">
+              Download Sheet SVG
+            </a>
+          </div>
+        </div>
+
+        <!-- Technical Drawing Card (Pristine White Surface with Solid Black Vector Lines) -->
+        <div class="sheet-display-card">
+          <div class="sheet-title-stamp">
+            <div>
+              <span class="stamp-id" id="stamp-sheet-title">SHEET 01 OF 06</span>
+              <span style="margin: 0 8px; color:#CCCCCC;">|</span>
+              <span class="stamp-specs" id="stamp-sheet-parts">P1 (1x), P5 (1x), P6 (7x) • 9 PARTS</span>
+            </div>
+            <div class="stamp-specs">
+              STOCK: 300 × 450 mm • 2.0 mm ACRYLIC • 1:1 TRUE METRIC
+            </div>
+          </div>
+
+          <!-- SVG Vector Graphics Stage -->
+          <div class="sheet-svg-wrapper" id="sheet-svg-wrapper">
+            <!-- Rendered by JS -->
+          </div>
+
+          <!-- Bottom Part Inspector Readout -->
+          <div class="sheet-inspector-footer">
+            <div class="inspector-left">
+              <span class="insp-chip" id="insp-id">P1</span>
+              <div>
+                <strong id="insp-name">Solid Base Plate</strong>
+                <span style="color:#777777; margin-left: 6px;" id="insp-dim">(300.0 × 300.0 mm)</span>
+              </div>
+            </div>
+            <div class="inspector-right" id="insp-desc">
+              Solid bottom chassis plate for motor & battery cradle. Flush sheet edge.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 4: COMPLETE 6-SHEET NEST OVERVIEW
+         ====================================================================== -->
+    <section class="report-section" id="section-nest">
+      <div class="section-header">
+        <div class="section-num">Section 04 // Nest Layout</div>
+        <h2 class="section-title">Complete 6-Sheet Nesting Plan</h2>
+        <p class="section-desc">
+          Global manufacturing overview showing the 30 components nested across six 300 × 450 mm raw acrylic stock sheets with 3 mm inter-part separation.
+        </p>
+      </div>
+
+      <div class="nest-overview-card">
+        <a href="preview_layout.png" target="_blank" title="Click to view full resolution layout">
+          <img src="preview_layout.png" alt="RoboBin 6-Sheet Laser Cut Nest Layout" class="nest-img">
+        </a>
+        <div style="font-family: var(--font-mono); font-size: 11px; color: #555555;">
+          Click image to open high-resolution manufacturing layout (3276 × 1040 px)
+        </div>
+      </div>
+    </section>
+
+
+
+  </main>
+
+  <!-- ========================================================================
+       MINIMALIST FOOTER
+       ======================================================================== -->
+  <footer class="report-footer">
+    <div>ROBOBIN AGV-CL1 // AUTONOMOUS CLASSIFIER AIRFRAME DOSSIER</div>
+    <div>ISO 2768-m CERTIFIED • 1:1 METRIC SPECIFICATION</div>
+  </footer>
+
+  <!-- ========================================================================
+       EMBEDDED LASER CUTTING SHEETS DATA (STRICTLY BLACK & WHITE LABELS)
+       ======================================================================== -->
+  <script>
+    const SHEETS_DATA = [
+      {
+        sheetIndex: 1,
+        title: "SHEET 01 OF 06",
+        file: "cut_ready_sheet1.svg",
+        width: 300,
+        height: 450,
+        partsSummary: "P1 (1x), P5 (1x), P6 (7x) • 9 PARTS",
+        parts: [
+          { id: "P1", name: "Solid Base Plate", dim: "300.0 × 300.0 mm", desc: "Solid bottom chassis plate for motor mounts & battery cradle. Flush sheet edge.", d: "M 300.000 300.000 L 300.000 0.000 L 0.000 0.000 L 0.000 300.000 Z", textX: 150, textY: 150, label: "P1 • BASE PLATE (300.0 × 300.0 mm)" },
+          { id: "P5", name: "Lower Corner Strip", dim: "270.0 × 20.0 mm", desc: "Lower chassis corner reinforcement strip for glued butt joints.", d: "M 270.000 323.000 L 270.000 303.000 L 0.000 303.000 L 0.000 323.000 Z", textX: 135, textY: 315, label: "P5: 270 × 20 mm" },
+          { id: "P6", name: "Upper Corner Strip", dim: "20.0 × 70.0 mm", desc: "Upper sorting tower corner bracket strip.", d: "M 293.000 303.000 L 273.000 303.000 L 273.000 373.000 L 293.000 373.000 Z", textX: 283, textY: 338, label: "P6", rotate: -90 },
+          { id: "P6", name: "Upper Corner Strip", dim: "20.0 × 70.0 mm", desc: "Upper sorting tower corner bracket strip.", d: "M 20.000 376.000 L 0.000 376.000 L 0.000 446.000 L 20.000 446.000 Z", textX: 10, textY: 411, label: "P6", rotate: -90 },
+          { id: "P6", name: "Upper Corner Strip", dim: "20.0 × 70.0 mm", desc: "Upper sorting tower corner bracket strip.", d: "M 43.000 376.000 L 23.000 376.000 L 23.000 446.000 L 43.000 446.000 Z", textX: 33, textY: 411, label: "P6", rotate: -90 },
+          { id: "P6", name: "Upper Corner Strip", dim: "20.0 × 70.0 mm", desc: "Upper sorting tower corner bracket strip.", d: "M 66.000 376.000 L 46.000 376.000 L 46.000 446.000 L 66.000 446.000 Z", textX: 56, textY: 411, label: "P6", rotate: -90 },
+          { id: "P6", name: "Upper Corner Strip", dim: "20.0 × 70.0 mm", desc: "Upper sorting tower corner bracket strip.", d: "M 89.000 376.000 L 69.000 376.000 L 69.000 446.000 L 89.000 446.000 Z", textX: 79, textY: 411, label: "P6", rotate: -90 },
+          { id: "P6", name: "Upper Corner Strip", dim: "20.0 × 70.0 mm", desc: "Upper sorting tower corner bracket strip.", d: "M 112.000 376.000 L 92.000 376.000 L 92.000 446.000 L 112.000 446.000 Z", textX: 102, textY: 411, label: "P6", rotate: -90 },
+          { id: "P6", name: "Upper Corner Strip", dim: "20.0 × 70.0 mm", desc: "Upper sorting tower corner bracket strip.", d: "M 135.000 376.000 L 115.000 376.000 L 115.000 446.000 L 135.000 446.000 Z", textX: 125, textY: 411, label: "P6 (20×70mm)", rotate: -90 }
+        ]
+      },
+      {
+        sheetIndex: 2,
+        title: "SHEET 02 OF 06",
+        file: "cut_ready_sheet2.svg",
+        width: 300,
+        height: 450,
+        partsSummary: "P2 (1x) with 95×95mm Chute Aperture",
+        parts: [
+          { id: "P2", name: "Mid/Top Plate with Chute", dim: "300.0 × 300.0 mm", desc: "Horizontal plate with 95×95mm square sorting aperture (49mm from left, 148.8mm from bottom).", d: "M 0.000 300.000 L 300.000 300.000 L 300.000 0.000 L 0.000 0.000 Z M 144.002 148.790 L 144.002 243.795 L 48.997 243.795 L 48.997 148.790 Z", textX: 150, textY: 80, label: "P2 • MID CHUTE PLATE (300.0 × 300.0 mm)", subLabel: "SQUARE APERTURE: 95.0 × 95.0 mm" }
+        ]
+      },
+      {
+        sheetIndex: 3,
+        title: "SHEET 03 OF 06",
+        file: "cut_ready_sheet3.svg",
+        width: 300,
+        height: 450,
+        partsSummary: "P2 (1x) with 95×95mm Chute Aperture",
+        parts: [
+          { id: "P2", name: "Top Plate with Chute", dim: "300.0 × 300.0 mm", desc: "Second horizontal plate with 95×95mm square sorting aperture. Stacks flush with Sheet 2.", d: "M 0.000 300.000 L 300.000 300.000 L 300.000 0.000 L 0.000 0.000 Z M 144.002 148.790 L 144.002 243.795 L 48.997 243.795 L 48.997 148.790 Z", textX: 150, textY: 80, label: "P2 • TOP CHUTE PLATE (300.0 × 300.0 mm)", subLabel: "SQUARE APERTURE: 95.0 × 95.0 mm" }
+        ]
+      },
+      {
+        sheetIndex: 4,
+        title: "SHEET 04 OF 06",
+        file: "cut_ready_sheet4.svg",
+        width: 300,
+        height: 450,
+        partsSummary: "P4 (2x), P9 (1x), P8 (1x), P7 (2x), P5 (1x), P6 (1x) • 8 PARTS",
+        parts: [
+          { id: "P4", name: "Bin Outer Wall (A)", dim: "202.0 × 200.0 mm", desc: "Bin perimeter structural wall panel.", d: "M 200.000 202.000 L 0.000 202.000 L 0.000 0.000 L 200.000 0.000 Z", textX: 100, textY: 101, label: "P4: 202.0 × 200.0 mm" },
+          { id: "P4", name: "Bin Outer Wall (B)", dim: "200.0 × 202.0 mm", desc: "Bin perimeter structural wall panel.", d: "M 200.000 407.000 L 0.000 407.000 L 0.000 205.000 L 200.000 205.000 Z", textX: 100, textY: 306, label: "P4: 200.0 × 202.0 mm" },
+          { id: "P9", name: "Sensor Wall (Fragile Tab)", dim: "95.0 × 117.0 mm", desc: "Sorting wall with 80×22mm notch & optical sensor port. ⚠️ 1.2mm tab hazard!", d: "M 298.000 348.000 L 203.000 348.000 L 203.000 231.000 L 298.000 231.000 L 298.000 248.868 L 298.000 252.880 L 217.986 252.880 L 217.986 348.000 Z M 216.738 270.887 L 216.738 270.835 C 216.738 266.862 213.518 263.642 209.544 263.642 C 205.571 263.642 202.351 266.862 202.351 270.835 L 202.351 270.887 L 202.000 270.887 L 202.000 285.578 L 202.351 285.578 L 202.351 285.629 C 202.351 289.603 205.571 292.823 209.544 292.823 C 213.518 292.823 216.738 289.603 216.738 285.629 L 216.738 285.578 L 217.089 285.578 L 217.089 270.887 Z", textX: 250, textY: 290, label: "P9: 95×117mm [SENSOR]" },
+          { id: "P8", name: "Notched Chamber Wall", dim: "70.0 × 117.0 mm", desc: "Upper sorting tower wall with 22×11mm notch for diverter servo clearance.", d: "M 273.000 117.000 L 203.000 117.000 L 203.000 0.000 L 273.000 0.000 L 273.000 95.000 L 262.000 95.000 L 262.000 117.000 Z", textX: 238, textY: 58, label: "P8: 70×117mm" },
+          { id: "P7", name: "Upper Chamber Wall", dim: "95.0 × 70.0 mm", desc: "Upper waste sorting chamber side panel.", d: "M 273.000 215.000 L 203.000 215.000 L 203.000 120.000 L 273.000 120.000 Z", textX: 238, textY: 167, label: "P7: 95×70mm" },
+          { id: "P7", name: "Upper Chamber Wall", dim: "95.0 × 70.0 mm", desc: "Upper waste sorting chamber side panel.", d: "M 298.000 446.000 L 203.000 446.000 L 203.000 351.000 L 298.000 351.000 Z", textX: 250, textY: 398, label: "P7: 95×70mm" },
+          { id: "P5", name: "Lower Corner Strip", dim: "20.0 × 270.0 mm", desc: "Chassis corner reinforcement strip.", d: "M 296.000 270.000 L 276.000 270.000 L 276.000 0.000 L 296.000 0.000 Z", textX: 286, textY: 135, label: "P5: 20×270mm", rotate: -90 },
+          { id: "P6", name: "Upper Corner Strip", dim: "20.0 × 70.0 mm", desc: "Upper sorting tower corner bracket strip.", d: "M 296.000 343.000 L 276.000 343.000 L 276.000 273.000 L 296.000 273.000 Z", textX: 286, textY: 308, label: "P6: 20×70", rotate: -90 }
+        ]
+      },
+      {
+        sheetIndex: 5,
+        title: "SHEET 05 OF 06",
+        file: "cut_ready_sheet5.svg",
+        width: 300,
+        height: 450,
+        partsSummary: "P3 (2x), P7 (1x), P5 (3x) • 6 PARTS",
+        parts: [
+          { id: "P3", name: "Bin Cross-Divider (A)", dim: "200.0 × 200.0 mm", desc: "Internal bin divider partition. Requires 2mm slot for cross half-lap joint.", d: "M 200.000 200.000 L 0.000 200.000 L 0.000 0.000 L 200.000 0.000 Z", textX: 100, textY: 100, label: "P3: 200.0 × 200.0 mm [DIVIDER]" },
+          { id: "P3", name: "Bin Cross-Divider (B)", dim: "200.0 × 200.0 mm", desc: "Internal bin divider partition. Requires 2mm slot for cross half-lap joint.", d: "M 200.000 403.000 L 0.000 403.000 L 0.000 203.000 L 200.000 203.000 Z", textX: 100, textY: 303, label: "P3: 200.0 × 200.0 mm [DIVIDER]" },
+          { id: "P7", name: "Upper Chamber Wall", dim: "95.0 × 70.0 mm", desc: "Upper waste sorting chamber side panel.", d: "M 273.000 95.000 L 203.000 95.000 L 203.000 0.000 L 273.000 0.000 Z", textX: 238, textY: 48, label: "P7: 95×70" },
+          { id: "P5", name: "Lower Corner Strip", dim: "20.0 × 270.0 mm", desc: "Chassis corner reinforcement strip.", d: "M 223.000 368.000 L 203.000 368.000 L 203.000 98.000 L 223.000 98.000 Z", textX: 213, textY: 233, label: "P5: 20×270", rotate: -90 },
+          { id: "P5", name: "Lower Corner Strip", dim: "20.0 × 270.0 mm", desc: "Chassis corner reinforcement strip.", d: "M 246.000 368.000 L 226.000 368.000 L 226.000 98.000 L 246.000 98.000 Z", textX: 236, textY: 233, label: "P5: 20×270", rotate: -90 },
+          { id: "P5", name: "Lower Corner Strip", dim: "20.0 × 270.0 mm", desc: "Chassis corner reinforcement strip.", d: "M 296.000 270.000 L 276.000 270.000 L 276.000 0.000 L 296.000 0.000 Z", textX: 286, textY: 135, label: "P5: 20×270", rotate: -90 }
+        ]
+      },
+      {
+        sheetIndex: 6,
+        title: "SHEET 06 OF 06",
+        file: "cut_ready_sheet6.svg",
+        width: 300,
+        height: 450,
+        partsSummary: "P3 (2x), P5 (3x) • 5 PARTS",
+        parts: [
+          { id: "P3", name: "Bin Cross-Divider (C)", dim: "200.0 × 200.0 mm", desc: "Internal bin divider partition. Requires 2mm slot for cross half-lap joint.", d: "M 200.000 200.000 L 0.000 200.000 L 0.000 0.000 L 200.000 0.000 Z", textX: 100, textY: 100, label: "P3: 200.0 × 200.0 mm [DIVIDER]" },
+          { id: "P3", name: "Bin Cross-Divider (D)", dim: "200.0 × 200.0 mm", desc: "Internal bin divider partition. Requires 2mm slot for cross half-lap joint.", d: "M 200.000 403.000 L 0.000 403.000 L 0.000 203.000 L 200.000 203.000 Z", textX: 100, textY: 303, label: "P3: 200.0 × 200.0 mm [DIVIDER]" },
+          { id: "P5", name: "Lower Corner Strip", dim: "20.0 × 270.0 mm", desc: "Chassis corner reinforcement strip.", d: "M 223.000 270.000 L 203.000 270.000 L 203.000 0.000 L 223.000 0.000 Z", textX: 213, textY: 135, label: "P5: 20×270", rotate: -90 },
+          { id: "P5", name: "Lower Corner Strip", dim: "20.0 × 270.0 mm", desc: "Chassis corner reinforcement strip.", d: "M 246.000 270.000 L 226.000 270.000 L 226.000 0.000 L 246.000 0.000 Z", textX: 236, textY: 135, label: "P5: 20×270", rotate: -90 },
+          { id: "P5", name: "Lower Corner Strip", dim: "20.0 × 270.0 mm", desc: "Chassis corner reinforcement strip.", d: "M 296.000 270.000 L 276.000 270.000 L 276.000 0.000 L 296.000 0.000 Z", textX: 286, textY: 135, label: "P5: 20×270", rotate: -90 }
+        ]
+      }
+    ];
+  </script>
+
+  <!-- ========================================================================
+       APPLICATION LOGIC & THREE.JS TECHNICAL VIEWER IMPLEMENTATION
+       ======================================================================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      // ------------------------------------------------------------------------
+      // Configuration & State
+      // ------------------------------------------------------------------------
+      const CONFIG = {
+        defaultStlPath: 'Cool Jarv-Blad.stl',
+        viewportBg: 0xFFFFFF,
+        meshColor: 0xF8F9FA,
+        edgeColor: 0x000000,
+        dimColor: 0x74C69D,
+        gridColor1: 0xCCCCCC,
+        gridColor2: 0xE5E5E5,
+      };
+
+      const STATE = {
+        modelMesh: null,
+        edgesLine: null,
+        dimGroup: null,
+        gridHelper: null,
+        bbox: null,
+        rawDimensions: { x: 307.0, y: 352.64, z: 378.0 },
+        showDimensions: true,
+        showEdges: true,
+        autoRotate: false,
+        activeSheetIndex: 1,
+      };
+
+      // DOM Elements
+      const container = document.getElementById('section-3d');
+      const canvas = document.getElementById('webgl-canvas');
+      const dropzoneOverlay = document.getElementById('dropzone-overlay');
+      const dropzoneBox = document.getElementById('dropzone-box');
+      const modalFilePicker = document.getElementById('modal-file-picker');
+      const stlFilePicker = document.getElementById('stl-file-picker');
+      const vBoundsText = document.getElementById('v-bounds-text');
+
+      // ------------------------------------------------------------------------
+      // Three.js Scene, Camera, Renderer Setup
+      // ------------------------------------------------------------------------
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(CONFIG.viewportBg);
+
+      const camera = new THREE.PerspectiveCamera(
+        42,
+        container.clientWidth / container.clientHeight,
+        1,
+        5000
+      );
+      camera.position.set(450, 380, 520);
+
+      const renderer = new THREE.WebGLRenderer({
+        canvas: canvas,
+        antialias: true,
+        alpha: false,
+        powerPreference: 'high-performance',
+        preserveDrawingBuffer: true,
+      });
+      renderer.setSize(container.clientWidth, container.clientHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      // OrbitControls with graceful fallback
+      let controls;
+      if (typeof THREE.OrbitControls !== 'undefined') {
+        controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.08;
+        controls.screenSpacePanning = true;
+        controls.minDistance = 50;
+        controls.maxDistance = 2500;
+        controls.maxPolarAngle = Math.PI / 2 + 0.05;
+        controls.target.set(0, 189, 0);
+      } else {
+        let isDragging = false;
+        let prevMouse = { x: 0, y: 0 };
+        const orbitTarget = new THREE.Vector3(0, 189, 0);
+        let spherical = { radius: 720, theta: Math.PI / 4, phi: Math.PI / 3 };
+
+        function updateFallbackCamera() {
+          camera.position.x = orbitTarget.x + spherical.radius * Math.sin(spherical.phi) * Math.sin(spherical.theta);
+          camera.position.y = orbitTarget.y + spherical.radius * Math.cos(spherical.phi);
+          camera.position.z = orbitTarget.z + spherical.radius * Math.sin(spherical.phi) * Math.cos(spherical.theta);
+          camera.lookAt(orbitTarget);
+        }
+
+        canvas.addEventListener('mousedown', (e) => {
+          isDragging = true;
+          prevMouse = { x: e.clientX, y: e.clientY };
+        });
+        window.addEventListener('mouseup', () => { isDragging = false; });
+        window.addEventListener('mousemove', (e) => {
+          if (!isDragging) return;
+          const dx = e.clientX - prevMouse.x;
+          const dy = e.clientY - prevMouse.y;
+          prevMouse = { x: e.clientX, y: e.clientY };
+          spherical.theta -= dx * 0.007;
+          spherical.phi = Math.max(0.1, Math.min(Math.PI / 2 + 0.05, spherical.phi - dy * 0.007));
+          updateFallbackCamera();
+        });
+        canvas.addEventListener('wheel', (e) => {
+          e.preventDefault();
+          spherical.radius = Math.max(100, Math.min(2500, spherical.radius + e.deltaY * 0.6));
+          updateFallbackCamera();
+        }, { passive: false });
+
+        controls = {
+          target: orbitTarget,
+          autoRotate: false,
+          update: () => {
+            if (controls.autoRotate) {
+              spherical.theta += 0.005;
+              updateFallbackCamera();
+            }
+          }
+        };
+        updateFallbackCamera();
+      }
+
+      // ------------------------------------------------------------------------
+      // Studio Lighting
+      // ------------------------------------------------------------------------
+      const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.75);
+      scene.add(ambientLight);
+
+      const keyLight = new THREE.DirectionalLight(0xFFFFFF, 0.45);
+      keyLight.position.set(500, 800, 600);
+      scene.add(keyLight);
+
+      const fillLight = new THREE.DirectionalLight(0xFFFFFF, 0.35);
+      fillLight.position.set(-600, 400, -500);
+      scene.add(fillLight);
+
+      const topLight = new THREE.DirectionalLight(0xFFFFFF, 0.25);
+      topLight.position.set(0, 1000, 0);
+      scene.add(topLight);
+
+      // Millimeter Grid Floor
+      const gridHelper = new THREE.GridHelper(800, 80, CONFIG.gridColor1, CONFIG.gridColor2);
+      gridHelper.position.y = -0.5;
+      scene.add(gridHelper);
+      STATE.gridHelper = gridHelper;
+
+      // ------------------------------------------------------------------------
+      // STL Parser
+      // ------------------------------------------------------------------------
+      function parseSTLBuffer(buffer) {
+        const isBinary = (function () {
+          if (buffer.byteLength < 84) return false;
+          const reader = new DataView(buffer);
+          const numFaces = reader.getUint32(80, true);
+          return (84 + numFaces * 50) === buffer.byteLength;
+        })();
+
+        if (isBinary) {
+          const reader = new DataView(buffer);
+          const numFaces = reader.getUint32(80, true);
+          const vertices = new Float32Array(numFaces * 3 * 3);
+          const normals = new Float32Array(numFaces * 3 * 3);
+          let offset = 84;
+          let vOffset = 0;
+
+          for (let i = 0; i < numFaces; i++) {
+            const nx = reader.getFloat32(offset, true);
+            const ny = reader.getFloat32(offset + 4, true);
+            const nz = reader.getFloat32(offset + 8, true);
+            offset += 12;
+
+            for (let j = 0; j < 3; j++) {
+              normals[vOffset] = nx;
+              normals[vOffset + 1] = ny;
+              normals[vOffset + 2] = nz;
+
+              vertices[vOffset] = reader.getFloat32(offset, true);
+              vertices[vOffset + 1] = reader.getFloat32(offset + 4, true);
+              vertices[vOffset + 2] = reader.getFloat32(offset + 8, true);
+              offset += 12;
+              vOffset += 3;
+            }
+            offset += 2;
+          }
+
+          const geometry = new THREE.BufferGeometry();
+          geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+          geometry.setAttribute('normal', new THREE.BufferAttribute(normals, 3));
+          return geometry;
+        } else {
+          const text = new TextDecoder().decode(buffer);
+          const lines = text.split('\n');
+          const vertices = [];
+          const normals = [];
+          let curNorm = [0, 0, 0];
+
+          for (let line of lines) {
+            line = line.trim();
+            if (line.startsWith('facet normal')) {
+              const parts = line.split(/\s+/);
+              curNorm = [parseFloat(parts[2]), parseFloat(parts[3]), parseFloat(parts[4])];
+            } else if (line.startsWith('vertex')) {
+              const parts = line.split(/\s+/);
+              vertices.push(parseFloat(parts[1]), parseFloat(parts[2]), parseFloat(parts[3]));
+              normals.push(curNorm[0], curNorm[1], curNorm[2]);
+            }
+          }
+
+          const geometry = new THREE.BufferGeometry();
+          geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(vertices), 3));
+          geometry.setAttribute('normal', new THREE.BufferAttribute(new Float32Array(normals), 3));
+          return geometry;
+        }
+      }
+
+      // ------------------------------------------------------------------------
+      // Model Construction
+      // ------------------------------------------------------------------------
+      function buildModelFromGeometry(geometry, fileName) {
+        if (STATE.modelMesh) {
+          scene.remove(STATE.modelMesh);
+          STATE.modelMesh.geometry.dispose();
+          STATE.modelMesh.material.dispose();
+          STATE.modelMesh = null;
+        }
+        if (STATE.edgesLine) {
+          scene.remove(STATE.edgesLine);
+          STATE.edgesLine.geometry.dispose();
+          STATE.edgesLine.material.dispose();
+          STATE.edgesLine = null;
+        }
+        if (STATE.dimGroup) {
+          scene.remove(STATE.dimGroup);
+          STATE.dimGroup = null;
+        }
+
+        // CAD Z-up to Three.js Y-up
+        geometry.computeBoundingBox();
+        geometry.rotateX(-Math.PI / 2);
+
+        // Center on X and Z, rest bottom at Y = 0
+        geometry.computeBoundingBox();
+        const rotatedBox = geometry.boundingBox;
+        const centerX = (rotatedBox.min.x + rotatedBox.max.x) / 2;
+        const centerZ = (rotatedBox.min.z + rotatedBox.max.z) / 2;
+        const minY = rotatedBox.min.y;
+
+        geometry.translate(-centerX, -minY, -centerZ);
+        geometry.computeBoundingBox();
+        geometry.computeVertexNormals();
+
+        const finalBox = geometry.boundingBox;
+        STATE.bbox = finalBox;
+
+        const sizeX = finalBox.max.x - finalBox.min.x;
+        const sizeY = finalBox.max.y - finalBox.min.y;
+        const sizeZ = finalBox.max.z - finalBox.min.z;
+        STATE.rawDimensions = { x: sizeX, y: sizeZ, z: sizeY };
+
+        // 1. Matte White Body Mesh
+        const bodyMaterial = new THREE.MeshLambertMaterial({
+          color: CONFIG.meshColor,
+          polygonOffset: true,
+          polygonOffsetFactor: 1,
+          polygonOffsetUnits: 1,
+        });
+        const mesh = new THREE.Mesh(geometry, bodyMaterial);
+        scene.add(mesh);
+        STATE.modelMesh = mesh;
+
+        // 2. Crisp Solid Black Feature Edges
+        const edgesGeometry = new THREE.EdgesGeometry(geometry, 26);
+        const edgesMaterial = new THREE.LineBasicMaterial({
+          color: CONFIG.edgeColor,
+          linewidth: 1,
+        });
+        const edgesLine = new THREE.LineSegments(edgesGeometry, edgesMaterial);
+        scene.add(edgesLine);
+        STATE.edgesLine = edgesLine;
+
+        // 3. Technical Dimensions Brackets in 3D
+        createDimensionBrackets(finalBox);
+
+        // 4. Center Camera
+        const maxDim = Math.max(sizeX, sizeY, sizeZ);
+        if (controls) {
+          controls.target.set(0, sizeY / 2, 0);
+          camera.position.set(maxDim * 1.3, maxDim * 1.1, maxDim * 1.5);
+          controls.update();
+        }
+
+        // Update Viewport Bounds Pill
+        vBoundsText.textContent = `${sizeX.toFixed(1)} × ${sizeZ.toFixed(1)} × ${sizeY.toFixed(1)} mm`;
+
+        dropzoneOverlay.classList.add('hidden');
+      }
+
+      // ------------------------------------------------------------------------
+      // Dimension Brackets (Clean 3D CAD Drafting)
+      // ------------------------------------------------------------------------
+      function createDimensionBrackets(box) {
+        if (STATE.dimGroup) {
+          scene.remove(STATE.dimGroup);
+        }
+
+        const group = new THREE.Group();
+        const min = box.min;
+        const max = box.max;
+        const w = max.x - min.x;
+        const h = max.y - min.y;
+        const d = max.z - min.z;
+
+        const offset = Math.max(w, h, d) * 0.08;
+        const tickLen = 8;
+
+        const lineMat = new THREE.LineBasicMaterial({
+          color: CONFIG.dimColor,
+          linewidth: 1.5,
+          transparent: true,
+          opacity: 0.85,
+        });
+
+        const bracketMat = new THREE.LineBasicMaterial({
+          color: 0x4A75E6,
+          linewidth: 1.2,
+          transparent: true,
+          opacity: 0.5,
+        });
+
+        const vertices = [];
+
+        // Width (X)
+        const frontZ = max.z + offset;
+        const dimY_X = min.y;
+        vertices.push(min.x, min.y, max.z,   min.x, min.y, frontZ + 4);
+        vertices.push(max.x, min.y, max.z,   max.x, min.y, frontZ + 4);
+        vertices.push(min.x, dimY_X, frontZ, max.x, dimY_X, frontZ);
+        vertices.push(min.x - tickLen, dimY_X, frontZ - tickLen, min.x + tickLen, dimY_X, frontZ + tickLen);
+        vertices.push(max.x - tickLen, dimY_X, frontZ - tickLen, max.x + tickLen, dimY_X, frontZ + tickLen);
+
+        // Depth (Z)
+        const rightX = max.x + offset;
+        const dimY_Z = min.y;
+        vertices.push(max.x, min.y, min.z,   rightX + 4, min.y, min.z);
+        vertices.push(max.x, min.y, max.z,   rightX + 4, min.y, max.z);
+        vertices.push(rightX, dimY_Z, min.z, rightX, dimY_Z, max.z);
+        vertices.push(rightX - tickLen, dimY_Z, min.z - tickLen, rightX + tickLen, dimY_Z, min.z + tickLen);
+        vertices.push(rightX - tickLen, dimY_Z, max.z - tickLen, rightX + tickLen, dimY_Z, max.z + tickLen);
+
+        // Height (Y)
+        const leftX = min.x - offset;
+        const vertZ = max.z;
+        vertices.push(min.x, min.y, vertZ,   leftX - 4, min.y, vertZ);
+        vertices.push(min.x, max.y, vertZ,   leftX - 4, max.y, vertZ);
+        vertices.push(leftX, min.y, vertZ,   leftX, max.y, vertZ);
+        vertices.push(leftX - tickLen, min.y - tickLen, vertZ, leftX + tickLen, min.y + tickLen, vertZ);
+        vertices.push(leftX - tickLen, max.y - tickLen, vertZ, leftX + tickLen, max.y + tickLen, vertZ);
+
+        // Bounding Box Corners
+        const bracketSize = Math.max(w, h, d) * 0.05;
+        const bVerts = [];
+        const corners = [
+          [min.x, min.y, min.z], [max.x, min.y, min.z],
+          [min.x, min.y, max.z], [max.x, min.y, max.z],
+          [min.x, max.y, min.z], [max.x, max.y, min.z],
+          [min.x, max.y, max.z], [max.x, max.y, max.z],
+        ];
+
+        corners.forEach(([cx, cy, cz]) => {
+          const sx = cx === min.x ? 1 : -1;
+          const sy = cy === min.y ? 1 : -1;
+          const sz = cz === min.z ? 1 : -1;
+          bVerts.push(cx, cy, cz,  cx + sx * bracketSize, cy, cz);
+          bVerts.push(cx, cy, cz,  cx, cy + sy * bracketSize, cz);
+          bVerts.push(cx, cy, cz,  cx, cy, cz + sz * bracketSize);
+        });
+
+        const linesGeom = new THREE.BufferGeometry();
+        linesGeom.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+        const dimLines = new THREE.LineSegments(linesGeom, lineMat);
+        group.add(dimLines);
+
+        const bracketGeom = new THREE.BufferGeometry();
+        bracketGeom.setAttribute('position', new THREE.Float32BufferAttribute(bVerts, 3));
+        const brackets = new THREE.LineSegments(bracketGeom, bracketMat);
+        group.add(brackets);
+
+        scene.add(group);
+        STATE.dimGroup = group;
+        group.visible = STATE.showDimensions;
+      }
+
+      // ------------------------------------------------------------------------
+      // Auto-Fetch & Embedded Model Loader
+      // ------------------------------------------------------------------------
+      function base64ToArrayBuffer(base64) {
+        const binaryString = window.atob(base64);
+        const len = binaryString.length;
+        const bytes = new Uint8Array(len);
+        for (let i = 0; i < len; i++) {
+          bytes[i] = binaryString.charCodeAt(i);
+        }
+        return bytes.buffer;
+      }
+
+      function initModel() {
+        // 1. Check for pre-bundled embedded STL model (works without any network or user upload)
+        if (window.EMBEDDED_STL_BASE64) {
+          try {
+            console.log('Mounting embedded 3D STL model directly from memory...');
+            const buffer = base64ToArrayBuffer(window.EMBEDDED_STL_BASE64);
+            const geometry = parseSTLBuffer(buffer);
+            buildModelFromGeometry(geometry, 'Cool Jarv-Blad.stl');
+            return;
+          } catch (err) {
+            console.warn('Failed to parse embedded STL model, falling back to network fetch:', err);
+          }
+        }
+
+        // 2. Network Fetch Fallback: For live HTTP / Cloudflare hosting
+        loadModelFromPath(CONFIG.defaultStlPath);
+      }
+
+      function loadModelFromPath(path) {
+        fetch(path)
+          .then((response) => {
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            return response.arrayBuffer();
+          })
+          .then((buffer) => {
+            const geometry = parseSTLBuffer(buffer);
+            buildModelFromGeometry(geometry, path);
+          })
+          .catch((err) => {
+            console.warn('Auto-fetch failed. Showing manual dropzone.', err);
+            dropzoneOverlay.classList.remove('hidden');
+          });
+      }
+
+      function handleFileSelect(file) {
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const buffer = e.target.result;
+          const geometry = parseSTLBuffer(buffer);
+          buildModelFromGeometry(geometry, file.name);
+        };
+        reader.readAsArrayBuffer(file);
+      }
+
+      container.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropzoneOverlay.classList.remove('hidden');
+        dropzoneBox.classList.add('drag-over');
+      });
+      dropzoneOverlay.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropzoneBox.classList.add('drag-over');
+      });
+      dropzoneOverlay.addEventListener('dragleave', (e) => {
+        if (e.target === dropzoneOverlay) dropzoneBox.classList.remove('drag-over');
+      });
+      dropzoneOverlay.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropzoneBox.classList.remove('drag-over');
+        if (e.dataTransfer.files.length > 0) handleFileSelect(e.dataTransfer.files[0]);
+      });
+      modalFilePicker.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) handleFileSelect(e.target.files[0]);
+      });
+      stlFilePicker.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) handleFileSelect(e.target.files[0]);
+      });
+
+      // ------------------------------------------------------------------------
+      // View Presets
+      // ------------------------------------------------------------------------
+      const presetButtons = document.querySelectorAll('.ctrl-btn[data-view]');
+
+      function setCameraView(viewName) {
+        if (!STATE.bbox) return;
+        const sizeY = STATE.bbox.max.y - STATE.bbox.min.y;
+        const maxDim = Math.max(
+          STATE.bbox.max.x - STATE.bbox.min.x,
+          sizeY,
+          STATE.bbox.max.z - STATE.bbox.min.z
+        );
+        const targetY = sizeY / 2;
+
+        presetButtons.forEach((b) => b.classList.remove('active'));
+        const btn = document.querySelector(`.ctrl-btn[data-view="${viewName}"]`);
+        if (btn) btn.classList.add('active');
+
+        switch (viewName) {
+          case 'isometric':
+            camera.position.set(maxDim * 1.3, maxDim * 1.1, maxDim * 1.5);
+            break;
+          case 'top':
+            camera.position.set(0, maxDim * 2.2, 0.001);
+            break;
+          case 'front':
+            camera.position.set(0, targetY, maxDim * 1.8);
+            break;
+          case 'right':
+            camera.position.set(maxDim * 1.8, targetY, 0);
+            break;
+        }
+        if (controls) {
+          controls.target.set(0, targetY, 0);
+          controls.update();
+        }
+      }
+
+      presetButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          setCameraView(btn.getAttribute('data-view'));
+        });
+      });
+
+      document.getElementById('btn-reset-cam').addEventListener('click', () => {
+        setCameraView('isometric');
+      });
+
+      // ------------------------------------------------------------------------
+      // Display Toggles
+      // ------------------------------------------------------------------------
+      const btnToggleDims = document.getElementById('btn-toggle-dims');
+      const btnToggleEdges = document.getElementById('btn-toggle-edges');
+      const btnToggleRotate = document.getElementById('btn-toggle-rotate');
+
+      btnToggleDims.addEventListener('click', () => {
+        STATE.showDimensions = !STATE.showDimensions;
+        if (STATE.dimGroup) STATE.dimGroup.visible = STATE.showDimensions;
+        btnToggleDims.classList.toggle('active', STATE.showDimensions);
+        btnToggleDims.classList.toggle('green', STATE.showDimensions);
+      });
+
+      btnToggleEdges.addEventListener('click', () => {
+        STATE.showEdges = !STATE.showEdges;
+        if (STATE.edgesLine) STATE.edgesLine.visible = STATE.showEdges;
+        btnToggleEdges.classList.toggle('active', STATE.showEdges);
+      });
+
+      btnToggleRotate.addEventListener('click', () => {
+        STATE.autoRotate = !STATE.autoRotate;
+        if (controls) {
+          controls.autoRotate = STATE.autoRotate;
+          controls.autoRotateSpeed = 2.0;
+        }
+        btnToggleRotate.classList.toggle('active', STATE.autoRotate);
+      });
+
+      // Export CAD Blueprint PNG
+      document.getElementById('btn-export-blueprint').addEventListener('click', () => {
+        renderer.render(scene, camera);
+        const dataUrl = canvas.toDataURL('image/png');
+        const link = document.createElement('a');
+        link.download = `ROBOBIN_CAD_BLUEPRINT_${Date.now()}.png`;
+        link.href = dataUrl;
+        link.click();
+      });
+
+      // ------------------------------------------------------------------------
+      // STRICTLY BLACK & WHITE SVG SHEET VIEWER WITH DIMENSIONS
+      // ------------------------------------------------------------------------
+      const sheetSvgWrapper = document.getElementById('sheet-svg-wrapper');
+      const stampSheetTitle = document.getElementById('stamp-sheet-title');
+      const stampSheetParts = document.getElementById('stamp-sheet-parts');
+      const inspId = document.getElementById('insp-id');
+      const inspName = document.getElementById('insp-name');
+      const inspDim = document.getElementById('insp-dim');
+      const inspDesc = document.getElementById('insp-desc');
+      const btnDlSvg = document.getElementById('btn-dl-svg');
+      const sheetPillButtons = document.querySelectorAll('.sheet-tab-btn');
+
+      function renderSvgSheet(sheetNum) {
+        STATE.activeSheetIndex = sheetNum;
+        const sheetData = SHEETS_DATA.find((s) => s.sheetIndex === sheetNum);
+        if (!sheetData) return;
+
+        sheetPillButtons.forEach((btn) => {
+          btn.classList.toggle('active', parseInt(btn.getAttribute('data-sheet'), 10) === sheetNum);
+        });
+
+        stampSheetTitle.textContent = sheetData.title.toUpperCase();
+        stampSheetParts.textContent = sheetData.partsSummary;
+        btnDlSvg.href = sheetData.file;
+        btnDlSvg.download = sheetData.file;
+
+        let pathsHtml = '';
+        let labelsHtml = '';
+
+        sheetData.parts.forEach((part, idx) => {
+          pathsHtml += `<path id="path-${part.id}-${idx}" 
+                              class="vector-cut-path" 
+                              data-idx="${idx}"
+                              data-part-id="${part.id}"
+                              data-name="${part.name}"
+                              data-dim="${part.dim}"
+                              data-desc="${part.desc}"
+                              d="${part.d}" />`;
+
+          // Generate Black & White Dimension Label
+          if (part.textX !== undefined && part.textY !== undefined) {
+            const rotAttr = part.rotate ? `transform="rotate(${part.rotate} ${part.textX} ${part.textY})"` : '';
+            labelsHtml += `
+              <text x="${part.textX}" y="${part.textY}" 
+                    text-anchor="middle" 
+                    dominant-baseline="central"
+                    fill="#000000" 
+                    font-family="'JetBrains Mono', monospace" 
+                    font-size="${part.rotate ? '8' : (part.id === 'P1' || part.id === 'P2' ? '12' : '9.5')}" 
+                    font-weight="600" 
+                    letter-spacing="0.2"
+                    pointer-events="none" 
+                    ${rotAttr}>${part.label}</text>
+            `;
+            if (part.subLabel) {
+              labelsHtml += `
+                <text x="${part.textX}" y="${part.textY + 16}" 
+                      text-anchor="middle" 
+                      dominant-baseline="central"
+                      fill="#555555" 
+                      font-family="'JetBrains Mono', monospace" 
+                      font-size="8.5" 
+                      font-weight="500" 
+                      pointer-events="none">${part.subLabel}</text>
+              `;
+            }
+          }
+        });
+
+        const svgMarkup = `
+          <svg viewBox="0 0 ${sheetData.width} ${sheetData.height}" xmlns="http://www.w3.org/2000/svg" style="background:#FFFFFF;">
+            <!-- Sheet 300x450 mm Border -->
+            <rect x="0" y="0" width="${sheetData.width}" height="${sheetData.height}" fill="#FFFFFF" stroke="#000000" stroke-width="0.8" />
+            <!-- Laser Cut Geometry (Strictly Solid Black) -->
+            <g id="CUT_LAYER">
+              ${pathsHtml}
+            </g>
+            <!-- All Sizes & Dimension Labels (Strictly Black & White) -->
+            <g id="LABELS_LAYER">
+              ${labelsHtml}
+            </g>
+          </svg>
+        `;
+
+        sheetSvgWrapper.innerHTML = svgMarkup;
+
+        // Path Hover / Click Interactions
+        const cutPaths = sheetSvgWrapper.querySelectorAll('.vector-cut-path');
+        cutPaths.forEach((path) => {
+          path.addEventListener('mouseenter', () => {
+            const pId = path.getAttribute('data-part-id');
+            const pName = path.getAttribute('data-name');
+            const pDim = path.getAttribute('data-dim');
+            const pDesc = path.getAttribute('data-desc');
+
+            inspId.textContent = pId;
+            inspName.textContent = pName;
+            inspDim.textContent = `(${pDim})`;
+            inspDesc.textContent = pDesc;
+          });
+
+          path.addEventListener('click', () => {
+            cutPaths.forEach((p) => p.classList.remove('active'));
+            path.classList.add('active');
+          });
+        });
+
+        // Set default inspector to first part
+        if (sheetData.parts.length > 0) {
+          const first = sheetData.parts[0];
+          inspId.textContent = first.id;
+          inspName.textContent = first.name;
+          inspDim.textContent = `(${first.dim})`;
+          inspDesc.textContent = first.desc;
+        }
+      }
+
+      sheetPillButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          renderSvgSheet(parseInt(btn.getAttribute('data-sheet'), 10));
+        });
+      });
+
+      // ------------------------------------------------------------------------
+      // Navigation Scroll Spy
+      // ------------------------------------------------------------------------
+      const navLinks = document.querySelectorAll('.nav-link');
+      const sections = document.querySelectorAll('section');
+
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach((sec) => {
+          const secTop = sec.offsetTop;
+          if (pageYOffset >= secTop - 120) {
+            current = sec.getAttribute('id');
+          }
+        });
+        navLinks.forEach((link) => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+          }
+        });
+      });
+
+      // ------------------------------------------------------------------------
+      // Window Resize Handling
+      // ------------------------------------------------------------------------
+      window.addEventListener('resize', onWindowResize);
+
+      function onWindowResize() {
+        const width = container.clientWidth;
+        const height = container.clientHeight;
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(width, height);
+      }
+
+      // ------------------------------------------------------------------------
+      // Render Loop
+      // ------------------------------------------------------------------------
+      function animate() {
+        requestAnimationFrame(animate);
+        if (controls && controls.update) controls.update();
+        renderer.render(scene, camera);
+      }
+      requestAnimationFrame(animate);
+
+      // ------------------------------------------------------------------------
+      // Initialize
+      // ------------------------------------------------------------------------
+      initModel();
+      renderSvgSheet(1);
+
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,290 @@
+[
+  {
+    "sheetIndex": 1,
+    "title": "Sheet 1 of 6",
+    "width": 300,
+    "height": 450,
+    "parts": [
+      {
+        "index": 0,
+        "id": "P1",
+        "name": "Base Plate",
+        "dim": "300 \u00d7 300 mm",
+        "desc": "Solid bottom chassis plate for motor & battery cradle",
+        "d": "M 300.000 300.000 L 300.000 0.000 L 0.000 0.000 L 0.000 300.000 Z"
+      },
+      {
+        "index": 1,
+        "id": "P5",
+        "name": "Lower Corner Strip",
+        "dim": "20 \u00d7 270 mm",
+        "desc": "Chassis corner reinforcement strip",
+        "d": "M 270.000 323.000 L 270.000 303.000 L 0.000 303.000 L 0.000 323.000 Z"
+      },
+      {
+        "index": 2,
+        "id": "P6",
+        "name": "Upper Corner Strip",
+        "dim": "20 \u00d7 70 mm",
+        "desc": "Upper sorting tower corner bracket strip",
+        "d": "M 293.000 303.000 L 273.000 303.000 L 273.000 373.000 L 293.000 373.000 Z"
+      },
+      {
+        "index": 3,
+        "id": "P6",
+        "name": "Upper Corner Strip",
+        "dim": "20 \u00d7 70 mm",
+        "desc": "Upper sorting tower corner bracket strip",
+        "d": "M 20.000 376.000 L 0.000 376.000 L 0.000 446.000 L 20.000 446.000 Z"
+      },
+      {
+        "index": 4,
+        "id": "P6",
+        "name": "Upper Corner Strip",
+        "dim": "20 \u00d7 70 mm",
+        "desc": "Upper sorting tower corner bracket strip",
+        "d": "M 43.000 376.000 L 23.000 376.000 L 23.000 446.000 L 43.000 446.000 Z"
+      },
+      {
+        "index": 5,
+        "id": "P6",
+        "name": "Upper Corner Strip",
+        "dim": "20 \u00d7 70 mm",
+        "desc": "Upper sorting tower corner bracket strip",
+        "d": "M 66.000 376.000 L 46.000 376.000 L 46.000 446.000 L 66.000 446.000 Z"
+      },
+      {
+        "index": 6,
+        "id": "P6",
+        "name": "Upper Corner Strip",
+        "dim": "20 \u00d7 70 mm",
+        "desc": "Upper sorting tower corner bracket strip",
+        "d": "M 89.000 376.000 L 69.000 376.000 L 69.000 446.000 L 89.000 446.000 Z"
+      },
+      {
+        "index": 7,
+        "id": "P6",
+        "name": "Upper Corner Strip",
+        "dim": "20 \u00d7 70 mm",
+        "desc": "Upper sorting tower corner bracket strip",
+        "d": "M 112.000 376.000 L 92.000 376.000 L 92.000 446.000 L 112.000 446.000 Z"
+      },
+      {
+        "index": 8,
+        "id": "P6",
+        "name": "Upper Corner Strip",
+        "dim": "20 \u00d7 70 mm",
+        "desc": "Upper sorting tower corner bracket strip",
+        "d": "M 135.000 376.000 L 115.000 376.000 L 115.000 446.000 L 135.000 446.000 Z"
+      }
+    ]
+  },
+  {
+    "sheetIndex": 2,
+    "title": "Sheet 2 of 6",
+    "width": 300,
+    "height": 450,
+    "parts": [
+      {
+        "index": 0,
+        "id": "P2",
+        "name": "Mid/Top Plate with Chute",
+        "dim": "300 \u00d7 300 mm",
+        "desc": "Plate with 95\u00d795mm square sorting aperture",
+        "d": "M 0.000 300.000 L 300.000 300.000 L 300.000 0.000 L 0.000 0.000 Z M 144.002 148.790 L 144.002 243.795 L 48.997 243.795 L 48.997 148.790 Z"
+      }
+    ]
+  },
+  {
+    "sheetIndex": 3,
+    "title": "Sheet 3 of 6",
+    "width": 300,
+    "height": 450,
+    "parts": [
+      {
+        "index": 0,
+        "id": "P2",
+        "name": "Mid/Top Plate with Chute",
+        "dim": "300 \u00d7 300 mm",
+        "desc": "Plate with 95\u00d795mm square sorting aperture",
+        "d": "M 0.000 300.000 L 300.000 300.000 L 300.000 0.000 L 0.000 0.000 Z M 144.002 148.790 L 144.002 243.795 L 48.997 243.795 L 48.997 148.790 Z"
+      }
+    ]
+  },
+  {
+    "sheetIndex": 4,
+    "title": "Sheet 4 of 6",
+    "width": 300,
+    "height": 450,
+    "parts": [
+      {
+        "index": 0,
+        "id": "P4",
+        "name": "Bin Outer Wall",
+        "dim": "202 \u00d7 200 mm",
+        "desc": "External bin enclosure structural panel",
+        "d": "M 0.000 0.000 L 0.000 200.000 L 202.000 200.000 L 202.000 0.000 Z"
+      },
+      {
+        "index": 1,
+        "id": "P4",
+        "name": "Bin Outer Wall",
+        "dim": "202 \u00d7 200 mm",
+        "desc": "External bin enclosure structural panel",
+        "d": "M 200.000 203.000 L 0.000 203.000 L 0.000 405.000 L 200.000 405.000 Z"
+      },
+      {
+        "index": 2,
+        "id": "P9",
+        "name": "Sensor Wall (Fragile Tab)",
+        "dim": "95 \u00d7 117 mm",
+        "desc": "Sorting wall with 80\u00d722mm notch & optical sensor port",
+        "d": "M 300.000 0.000 L 285.000 0.000 L 285.000 22.000 L 205.000 22.000 L 205.000 117.000 L 300.000 117.000 Z M 287.287 5.197 L 288.576 3.908 L 290.200 3.081 L 292.000 2.796 L 293.800 3.081 L 295.424 3.908 L 296.713 5.197 L 297.540 6.821 L 297.825 8.621 L 297.540 10.421 L 296.713 12.045 L 295.424 13.333 L 294.725 13.689 L 294.875 14.596 L 294.734 15.484 L 294.326 16.286 L 293.690 16.922 L 292.888 17.330 L 292.000 17.471 L 291.112 17.330 L 290.310 16.922 L 289.674 16.286 L 289.266 15.484 L 289.125 14.596 L 289.275 13.689 L 288.576 13.333 L 287.287 12.045 L 286.460 10.421 L 286.175 8.621 L 286.460 6.821 Z"
+      },
+      {
+        "index": 3,
+        "id": "P8",
+        "name": "Notched Chamber Wall",
+        "dim": "117 \u00d7 70 mm",
+        "desc": "Upper wall with 22\u00d711mm corner notch for diverter servo",
+        "d": "M 263.947 142.000 L 205.000 142.000 L 205.000 237.000 L 275.000 237.000 L 275.000 120.000 L 263.947 120.000 Z"
+      },
+      {
+        "index": 4,
+        "id": "P7",
+        "name": "Upper Chamber Wall",
+        "dim": "95 \u00d7 70 mm",
+        "desc": "Waste intake chute structural side wall",
+        "d": "M 298.000 240.000 L 203.000 240.000 L 203.000 310.000 L 298.000 310.000 Z"
+      },
+      {
+        "index": 5,
+        "id": "P7",
+        "name": "Upper Chamber Wall",
+        "dim": "95 \u00d7 70 mm",
+        "desc": "Waste intake chute structural side wall",
+        "d": "M 298.000 313.000 L 203.000 313.000 L 203.000 383.000 L 298.000 383.000 Z"
+      },
+      {
+        "index": 6,
+        "id": "P5",
+        "name": "Lower Corner Strip",
+        "dim": "20 \u00d7 270 mm",
+        "desc": "Chassis corner reinforcement strip",
+        "d": "M 270.000 428.000 L 270.000 408.000 L 0.000 408.000 L 0.000 428.000 Z"
+      },
+      {
+        "index": 7,
+        "id": "P6",
+        "name": "Upper Corner Strip",
+        "dim": "20 \u00d7 70 mm",
+        "desc": "Upper sorting tower corner bracket strip",
+        "d": "M 298.000 120.000 L 278.000 120.000 L 278.000 190.000 L 298.000 190.000 Z"
+      }
+    ]
+  },
+  {
+    "sheetIndex": 5,
+    "title": "Sheet 5 of 6",
+    "width": 300,
+    "height": 450,
+    "parts": [
+      {
+        "index": 0,
+        "id": "P3",
+        "name": "Bin Divider / Cross Wall",
+        "dim": "200 \u00d7 200 mm",
+        "desc": "Internal compartment partition wall (requires 2mm slot)",
+        "d": "M 200.000 0.000 L 0.000 0.000 L 0.000 200.000 L 200.000 200.000 Z"
+      },
+      {
+        "index": 1,
+        "id": "P3",
+        "name": "Bin Divider / Cross Wall",
+        "dim": "200 \u00d7 200 mm",
+        "desc": "Internal compartment partition wall (requires 2mm slot)",
+        "d": "M 200.000 203.000 L 0.000 203.000 L 0.000 403.000 L 200.000 403.000 Z"
+      },
+      {
+        "index": 2,
+        "id": "P7",
+        "name": "Upper Chamber Wall",
+        "dim": "95 \u00d7 70 mm",
+        "desc": "Waste intake chute structural side wall",
+        "d": "M 298.000 0.000 L 203.000 0.000 L 203.000 70.000 L 298.000 70.000 Z"
+      },
+      {
+        "index": 3,
+        "id": "P5",
+        "name": "Lower Corner Strip",
+        "dim": "20 \u00d7 270 mm",
+        "desc": "Chassis corner reinforcement strip",
+        "d": "M 270.000 426.000 L 270.000 406.000 L 0.000 406.000 L 0.000 426.000 Z"
+      },
+      {
+        "index": 4,
+        "id": "P5",
+        "name": "Lower Corner Strip",
+        "dim": "20 \u00d7 270 mm",
+        "desc": "Chassis corner reinforcement strip",
+        "d": "M 270.000 449.000 L 270.000 429.000 L 0.000 429.000 L 0.000 449.000 Z"
+      },
+      {
+        "index": 5,
+        "id": "P5",
+        "name": "Lower Corner Strip",
+        "dim": "20 \u00d7 270 mm",
+        "desc": "Chassis corner reinforcement strip",
+        "d": "M 293.000 73.000 L 273.000 73.000 L 273.000 343.000 L 293.000 343.000 Z"
+      }
+    ]
+  },
+  {
+    "sheetIndex": 6,
+    "title": "Sheet 6 of 6",
+    "width": 300,
+    "height": 450,
+    "parts": [
+      {
+        "index": 0,
+        "id": "P3",
+        "name": "Bin Divider / Cross Wall",
+        "dim": "200 \u00d7 200 mm",
+        "desc": "Internal compartment partition wall (requires 2mm slot)",
+        "d": "M 200.000 0.000 L 0.000 0.000 L 0.000 200.000 L 200.000 200.000 Z"
+      },
+      {
+        "index": 1,
+        "id": "P3",
+        "name": "Bin Divider / Cross Wall",
+        "dim": "200 \u00d7 200 mm",
+        "desc": "Internal compartment partition wall (requires 2mm slot)",
+        "d": "M 200.000 203.000 L 0.000 203.000 L 0.000 403.000 L 200.000 403.000 Z"
+      },
+      {
+        "index": 2,
+        "id": "P5",
+        "name": "Lower Corner Strip",
+        "dim": "20 \u00d7 270 mm",
+        "desc": "Chassis corner reinforcement strip",
+        "d": "M 270.000 426.000 L 270.000 406.000 L 0.000 406.000 L 0.000 426.000 Z"
+      },
+      {
+        "index": 3,
+        "id": "P5",
+        "name": "Lower Corner Strip",
+        "dim": "20 \u00d7 270 mm",
+        "desc": "Chassis corner reinforcement strip",
+        "d": "M 270.000 449.000 L 270.000 429.000 L 0.000 429.000 L 0.000 449.000 Z"
+      },
+      {
+        "index": 4,
+        "id": "P5",
+        "name": "Lower Corner Strip",
+        "dim": "20 \u00d7 270 mm",
+        "desc": "Chassis corner reinforcement strip",
+        "d": "M 293.000 0.000 L 273.000 0.000 L 273.000 270.000 L 293.000 270.000 Z"
+      }
+    ]
+  }
+]
