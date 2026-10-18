@@ -673,6 +673,259 @@
       user-select: none;
     }
 
+    /* --------------------------------------------------------------------------
+       SECTION 05: MISSION CONTROL SIMULATOR STYLES
+       -------------------------------------------------------------------------- */
+    .mission-control-container {
+      display: grid;
+      grid-template-columns: 1.55fr 1fr;
+      gap: 24px;
+      align-items: stretch;
+      margin-top: 24px;
+    }
+
+    .mission-map-card {
+      background: var(--surface-card);
+      border: 1px solid var(--border-dark);
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .mission-map-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-dark);
+      padding-bottom: 12px;
+    }
+
+    .mission-map-title {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.6px;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mission-map-meta {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 3px 8px;
+      background: var(--accent-green-subtle);
+      border: 1px solid rgba(116, 198, 157, 0.3);
+      color: var(--accent-green);
+      border-radius: 3px;
+    }
+
+    .hospital-map-wrapper {
+      position: relative;
+      width: 100%;
+      background: #0A0A0A;
+      border: 1px solid var(--border-dark);
+      border-radius: 6px;
+      overflow: hidden;
+      aspect-ratio: 800 / 480;
+    }
+
+    #hospital-map-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .map-station-node {
+      cursor: pointer;
+      transition: filter 0.2s ease, transform 0.2s ease;
+    }
+
+    .map-station-node:hover {
+      filter: brightness(1.4);
+    }
+
+    .mission-btn-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-mission {
+      background: var(--surface-inset);
+      border: 1px solid var(--border-dark);
+      color: var(--text-main);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 8px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .btn-mission:hover {
+      background: var(--surface-hover);
+      border-color: #444444;
+      color: #FFFFFF;
+    }
+
+    .btn-mission.primary {
+      background: var(--accent-blue);
+      border-color: var(--accent-blue);
+      color: #FFFFFF;
+    }
+
+    .btn-mission.primary:hover {
+      background: var(--accent-blue-hover);
+    }
+
+    .btn-mission.danger {
+      background: #1E1E1E;
+      border-color: #555555;
+      color: #FFFFFF;
+    }
+
+    .btn-mission.danger:hover {
+      background: #2E2E2E;
+      border-color: #FFFFFF;
+    }
+
+    .mission-telemetry-col {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .mission-metrics-card {
+      background: var(--surface-card);
+      border: 1px solid var(--border-dark);
+      border-radius: 8px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .telemetry-hdr {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.8px;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-dark);
+      padding-bottom: 8px;
+    }
+
+    .telemetry-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+
+    .tel-label {
+      color: var(--text-muted);
+    }
+
+    .tel-val {
+      color: #FFFFFF;
+      font-weight: 500;
+    }
+
+    .tel-val.pass {
+      color: var(--accent-green);
+    }
+
+    .tel-val.mono-blue {
+      color: #8BB0FF;
+    }
+
+    .mission-console-card {
+      background: var(--surface-card);
+      border: 1px solid var(--border-dark);
+      border-radius: 8px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+      min-height: 240px;
+    }
+
+    .console-hdr {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-dark);
+      padding-bottom: 8px;
+    }
+
+    .console-clear {
+      cursor: pointer;
+      color: var(--text-dim);
+      font-size: 10px;
+      transition: color 0.15s;
+    }
+
+    .console-clear:hover {
+      color: #FFFFFF;
+    }
+
+    .console-log-body {
+      background: #0A0A0A;
+      border: 1px solid #1E1E1E;
+      border-radius: 4px;
+      padding: 12px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      line-height: 1.6;
+      height: 210px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .console-line {
+      word-break: break-all;
+    }
+
+    .console-line.tx {
+      color: #8BB0FF;
+    }
+
+    .console-line.rx {
+      color: var(--accent-green);
+    }
+
+    .console-line.sys {
+      color: var(--text-dim);
+    }
+
+    .console-line.err {
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+
+    @media (max-width: 1024px) {
+      .mission-control-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 900px) {
       .metrics-summary-grid {
         grid-template-columns: 1fr 1fr;
@@ -701,6 +954,7 @@
       <a href="#section-summary" class="nav-link">02 SPECIFICATIONS</a>
       <a href="#section-sheets" class="nav-link">03 CUT SHEETS</a>
       <a href="#section-nest" class="nav-link">04 NEST LAYOUT</a>
+      <a href="#section-mission" class="nav-link">05 MISSION CONTROL</a>
     </div>
 
     <div class="nav-actions">
@@ -923,9 +1177,221 @@
       </div>
     </section>
 
+    <!-- ======================================================================
+         SECTION 05: INTERACTIVE HOSPITAL MISSION CONTROL SIMULATOR
+         ====================================================================== -->
+    <section class="report-section" id="section-mission">
+      <div class="section-header">
+        <div class="section-num">Section 05 // Mission Control</div>
+        <h2 class="section-title">Autonomous Hospital AGV Dispatch & Route Simulator</h2>
+        <p class="section-desc">
+          Interactive clinical ward spatial simulator demonstrating autonomous navigation between patient beds, closed-loop MPU6050 turn maneuvers, and real-time UART serial telemetry execution.
+        </p>
+      </div>
 
+      <div class="mission-control-container">
+        <!-- Left: Hospital Floor Map & Controls -->
+        <div class="mission-map-card">
+          <div class="mission-map-header">
+            <div class="mission-map-title">
+              <span class="live-dot"></span>
+              WARD 4B // ORTHOGONAL NAVIGATION GRID
+            </div>
+            <div class="mission-map-meta" id="sim-status-badge">
+              STATUS: IDLE DOCKED
+            </div>
+          </div>
 
-  </main>
+          <!-- SVG Hospital Blueprint Map -->
+          <div class="hospital-map-wrapper">
+            <svg id="hospital-map-svg" viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <pattern id="hospital-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#181818" stroke-width="0.5"/>
+                </pattern>
+              </defs>
+
+              <!-- Floor Background & Grid -->
+              <rect width="800" height="480" fill="#0A0A0A" />
+              <rect width="800" height="480" fill="url(#hospital-grid)" />
+
+              <!-- Hospital Walls & Rooms -->
+              <!-- Room 101: Bed 01 -->
+              <rect x="60" y="40" width="200" height="140" fill="#141414" stroke="#2A2A2A" stroke-width="1.2" rx="4" />
+              <text x="75" y="65" fill="#8E929B" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="1">ROOM 101</text>
+              <text x="75" y="85" fill="#FFFFFF" font-family="'Inter', sans-serif" font-size="12" font-weight="600">BED 01 [POST-OP]</text>
+              
+              <!-- Room 102: Bed 02 (ICU) -->
+              <rect x="300" y="40" width="200" height="140" fill="#141414" stroke="#2A2A2A" stroke-width="1.2" rx="4" />
+              <text x="315" y="65" fill="#8E929B" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="1">ROOM 102 (ICU)</text>
+              <text x="315" y="85" fill="#FFFFFF" font-family="'Inter', sans-serif" font-size="12" font-weight="600">BED 02 [BIOHAZARD]</text>
+
+              <!-- Room 103: Bed 03 -->
+              <rect x="540" y="40" width="200" height="140" fill="#141414" stroke="#2A2A2A" stroke-width="1.2" rx="4" />
+              <text x="555" y="65" fill="#8E929B" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="1">ROOM 103</text>
+              <text x="555" y="85" fill="#FFFFFF" font-family="'Inter', sans-serif" font-size="12" font-weight="600">BED 03 [GENERAL]</text>
+
+              <!-- Dock & Charging Station -->
+              <rect x="60" y="300" width="200" height="140" fill="#141414" stroke="#2A2A2A" stroke-width="1.2" rx="4" />
+              <text x="75" y="325" fill="#8E929B" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="1">BAY A</text>
+              <text x="75" y="345" fill="#74C69D" font-family="'Inter', sans-serif" font-size="12" font-weight="600">CHARGING DOCK / BASE</text>
+
+              <!-- Nurse Desk Hub -->
+              <rect x="300" y="300" width="200" height="140" fill="#141414" stroke="#2A2A2A" stroke-width="1.2" rx="4" />
+              <text x="315" y="325" fill="#8E929B" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="1">CENTRAL HUB</text>
+              <text x="315" y="345" fill="#FFFFFF" font-family="'Inter', sans-serif" font-size="12" font-weight="600">NURSE STATION</text>
+
+              <!-- Biohazard Disposal Bay -->
+              <rect x="540" y="300" width="200" height="140" fill="#141414" stroke="#2A2A2A" stroke-width="1.2" rx="4" />
+              <text x="555" y="325" fill="#8E929B" font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="1">BAY B</text>
+              <text x="555" y="345" fill="#4A75E6" font-family="'Inter', sans-serif" font-size="12" font-weight="600">DISPOSAL DISPATCH DOCK</text>
+
+              <!-- Corridors & Guidance Nav Lines (Orthogonal) -->
+              <g stroke="#181818" stroke-width="34" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="160" y1="240" x2="640" y2="240" />
+                <line x1="160" y1="130" x2="160" y2="350" />
+                <line x1="400" y1="130" x2="400" y2="350" />
+                <line x1="640" y1="130" x2="640" y2="350" />
+              </g>
+
+              <!-- Center Nav Track Guide (Faint Dashed Line) -->
+              <g stroke="#2E2E2E" stroke-width="1.5" stroke-dasharray="4,4">
+                <line x1="160" y1="240" x2="640" y2="240" />
+                <line x1="160" y1="130" x2="160" y2="350" />
+                <line x1="400" y1="130" x2="400" y2="350" />
+                <line x1="640" y1="130" x2="640" y2="350" />
+              </g>
+
+              <!-- Interactive Waypoint Targets (Clickable) -->
+              <!-- Dock Target -->
+              <g class="map-station-node" data-station="dock" transform="translate(160, 350)">
+                <circle r="18" fill="rgba(116, 198, 157, 0.12)" stroke="#74C69D" stroke-width="1.5" />
+                <circle r="5" fill="#74C69D" />
+                <text y="28" fill="#74C69D" font-family="'JetBrains Mono', monospace" font-size="9.5" text-anchor="middle">DOCK (HOME)</text>
+              </g>
+
+              <!-- Bed 01 Target -->
+              <g class="map-station-node" data-station="bed1" transform="translate(160, 130)">
+                <circle r="18" fill="rgba(74, 117, 230, 0.12)" stroke="#4A75E6" stroke-width="1.5" />
+                <circle r="5" fill="#4A75E6" />
+                <text y="28" fill="#E0E0E0" font-family="'JetBrains Mono', monospace" font-size="9.5" text-anchor="middle">BED 01</text>
+              </g>
+
+              <!-- Bed 02 Target (ICU) -->
+              <g class="map-station-node" data-station="bed2" transform="translate(400, 130)">
+                <circle r="18" fill="rgba(74, 117, 230, 0.12)" stroke="#4A75E6" stroke-width="1.5" />
+                <circle r="5" fill="#4A75E6" />
+                <text y="28" fill="#E0E0E0" font-family="'JetBrains Mono', monospace" font-size="9.5" text-anchor="middle">BED 02 [ICU]</text>
+              </g>
+
+              <!-- Bed 03 Target -->
+              <g class="map-station-node" data-station="bed3" transform="translate(640, 130)">
+                <circle r="18" fill="rgba(74, 117, 230, 0.12)" stroke="#4A75E6" stroke-width="1.5" />
+                <circle r="5" fill="#4A75E6" />
+                <text y="28" fill="#E0E0E0" font-family="'JetBrains Mono', monospace" font-size="9.5" text-anchor="middle">BED 03</text>
+              </g>
+
+              <!-- Nurse Station Target -->
+              <g class="map-station-node" data-station="nurse" transform="translate(400, 350)">
+                <circle r="18" fill="rgba(255, 255, 255, 0.1)" stroke="#888888" stroke-width="1.5" />
+                <circle r="5" fill="#FFFFFF" />
+                <text y="28" fill="#E0E0E0" font-family="'JetBrains Mono', monospace" font-size="9.5" text-anchor="middle">NURSE STN</text>
+              </g>
+
+              <!-- Disposal Target -->
+              <g class="map-station-node" data-station="disposal" transform="translate(640, 350)">
+                <circle r="18" fill="rgba(74, 117, 230, 0.12)" stroke="#4A75E6" stroke-width="1.5" />
+                <circle r="5" fill="#4A75E6" />
+                <text y="28" fill="#E0E0E0" font-family="'JetBrains Mono', monospace" font-size="9.5" text-anchor="middle">DISPOSAL</text>
+              </g>
+
+              <!-- Active Path Trail -->
+              <polyline id="sim-path-trail" points="" fill="none" stroke="#4A75E6" stroke-width="2.5" stroke-dasharray="6,4" />
+
+              <!-- RoboBin AGV Vehicle Sprite -->
+              <g id="sim-agv-sprite" transform="translate(160, 350) rotate(0)">
+                <!-- AGV Body (Top-down technical illustration) -->
+                <rect x="-16" y="-20" width="32" height="40" rx="4" fill="#FFFFFF" stroke="#000000" stroke-width="1.5" />
+                <!-- Drive Wheels (Left & Right) -->
+                <rect x="-19" y="-8" width="3" height="16" fill="#4A75E6" rx="1" />
+                <rect x="16" y="-8" width="3" height="16" fill="#4A75E6" rx="1" />
+                <!-- Front Caster & Waste Chute Indicator -->
+                <circle cx="0" cy="-14" r="3.5" fill="#000000" />
+                <!-- Direction Indicator Arrow -->
+                <polygon points="0,-18 -4,-11 4,-11" fill="#74C69D" />
+                <!-- Beacon Light Pulse -->
+                <circle cx="0" cy="5" r="3.5" fill="#74C69D" id="sim-agv-beacon" />
+              </g>
+            </svg>
+          </div>
+
+          <!-- Mission Control Buttons -->
+          <div class="mission-btn-bar">
+            <button class="btn-mission primary" id="btn-mission-patrol">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              Auto-Patrol Wards
+            </button>
+            <button class="btn-mission" id="btn-mission-biohazard">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"></path></svg>
+              ICU Biohazard Call
+            </button>
+            <button class="btn-mission" id="btn-mission-dock">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+              Return to Dock
+            </button>
+            <button class="btn-mission danger" id="btn-mission-stop">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect></svg>
+              E-Stop (X)
+            </button>
+          </div>
+        </div>
+
+        <!-- Right: Telemetry & Live UART Serial Console -->
+        <div class="mission-telemetry-col">
+          <!-- Real-Time Metrics Card -->
+          <div class="mission-metrics-card">
+            <div class="telemetry-hdr">VEHICLE TELEMETRY READOUT</div>
+            
+            <div class="telemetry-row">
+              <span class="tel-label">SYSTEM STATE</span>
+              <span class="tel-val pass" id="tel-state">STATIONARY DOCKED</span>
+            </div>
+            <div class="telemetry-row">
+              <span class="tel-label">TARGET STATION</span>
+              <span class="tel-val" id="tel-target">BAY A // CHARGER</span>
+            </div>
+            <div class="telemetry-row">
+              <span class="tel-label">POSE COORDINATES</span>
+              <span class="tel-val" id="tel-pose">X: 160 • Y: 350 cm</span>
+            </div>
+            <div class="telemetry-row">
+              <span class="tel-label">HEADING (MPU6050)</span>
+              <span class="tel-val" id="tel-yaw">0.0° [LOCKED]</span>
+            </div>
+            <div class="telemetry-row">
+              <span class="tel-label">LAST SERIAL CMD</span>
+              <span class="tel-val mono-blue" id="tel-cmd">NONE</span>
+            </div>
+            <div class="telemetry-row">
+              <span class="tel-label">BATTERY / LOGIC</span>
+              <span class="tel-val">8.24V (2S) • 5.01V REG</span>
+            </div>
+          </div>
+
+          <!-- Live Command Console -->
+          <div class="mission-console-card">
+            <div class="console-hdr">
+              <span>LIVE UART SERIAL CONSOLE (9600 BAUD)</span>
+              <span class="console-clear" id="btn-clear-console">CLEAR</span>
+            </div>
+            <div class="console-log-body" id="sim-console-log">
+              <div class="console-line sys">[SYSTEM] PROTOCOL BRIDGE INITIALIZED (HC-05 / USB CDC)</div>
+              <div class="console-line sys">[SYSTEM] ROBOT READY AT DOCK // AWAITING COMMAND</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
   <!-- ========================================================================
        MINIMALIST FOOTER
@@ -1764,6 +2230,263 @@
         renderer.render(scene, camera);
       }
       requestAnimationFrame(animate);
+
+      // ========================================================================
+      // SECTION 05: HOSPITAL MISSION CONTROL & NAVIGATION SIMULATOR
+      // ========================================================================
+      const SIM_STATIONS = {
+        dock:     { name: "BAY A // CHARGER", x: 160, y: 350, defaultHeading: 0, sortCmd: null },
+        bed1:     { name: "ROOM 101 // BED 01", x: 160, y: 130, defaultHeading: 0, sortCmd: "B1" },
+        bed2:     { name: "ROOM 102 // BED 02 [ICU]", x: 400, y: 130, defaultHeading: 0, sortCmd: "B4" },
+        bed3:     { name: "ROOM 103 // BED 03", x: 640, y: 130, defaultHeading: 0, sortCmd: "B2" },
+        nurse:    { name: "CENTRAL // NURSE STATION", x: 400, y: 350, defaultHeading: 180, sortCmd: null },
+        disposal: { name: "BAY B // DISPOSAL DOCK", x: 640, y: 350, defaultHeading: 180, sortCmd: "B3" },
+      };
+
+      const SIM_STATE = {
+        currentX: 160,
+        currentY: 350,
+        heading: 0,
+        isRunning: false,
+        stopRequested: false,
+        activeStation: 'dock',
+      };
+
+      const agvSprite = document.getElementById('sim-agv-sprite');
+      const pathTrail = document.getElementById('sim-path-trail');
+      const simStatusBadge = document.getElementById('sim-status-badge');
+      const telState = document.getElementById('tel-state');
+      const telTarget = document.getElementById('tel-target');
+      const telPose = document.getElementById('tel-pose');
+      const telYaw = document.getElementById('tel-yaw');
+      const telCmd = document.getElementById('tel-cmd');
+      const consoleLog = document.getElementById('sim-console-log');
+      const btnClearConsole = document.getElementById('btn-clear-console');
+
+      function logConsole(text, type = 'sys') {
+        const time = new Date().toISOString().substring(14, 21);
+        const line = document.createElement('div');
+        line.className = `console-line ${type}`;
+        line.textContent = `[${time}] ${text}`;
+        consoleLog.appendChild(line);
+        consoleLog.scrollTop = consoleLog.scrollHeight;
+      }
+
+      if (btnClearConsole) {
+        btnClearConsole.addEventListener('click', () => {
+          consoleLog.innerHTML = '<div class="console-line sys">[SYSTEM] CONSOLE BUFFER CLEARED</div>';
+        });
+      }
+
+      function updateAgvTransform(x, y, heading) {
+        SIM_STATE.currentX = x;
+        SIM_STATE.currentY = y;
+        SIM_STATE.heading = heading;
+        if (agvSprite) {
+          agvSprite.setAttribute('transform', `translate(${x}, ${y}) rotate(${heading})`);
+        }
+        if (telPose) telPose.textContent = `X: ${Math.round(x)} • Y: ${Math.round(y)} cm`;
+        if (telYaw) telYaw.textContent = `${heading.toFixed(1)}° [LOCKED]`;
+      }
+
+      function sleep(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+      }
+
+      function getCorridorWaypoints(startX, startY, endX, endY) {
+        const corridorY = 240;
+        if (startX === endX) {
+          return [{ x: endX, y: endY }];
+        }
+        return [
+          { x: startX, y: corridorY },
+          { x: endX, y: corridorY },
+          { x: endX, y: endY }
+        ];
+      }
+
+      function getHeadingFromDelta(dx, dy) {
+        if (dy < -0.1) return 0;   // North
+        if (dx > 0.1) return 90;  // East
+        if (dy > 0.1) return 180; // South
+        if (dx < -0.1) return 270;// West
+        return null;
+      }
+
+      async function executeMoveLeg(targetX, targetY) {
+        if (SIM_STATE.stopRequested) return false;
+
+        const startX = SIM_STATE.currentX;
+        const startY = SIM_STATE.currentY;
+        const dx = targetX - startX;
+        const dy = targetY - startY;
+        const neededHeading = getHeadingFromDelta(dx, dy);
+
+        // Rotate heading if required
+        if (neededHeading !== null && neededHeading !== SIM_STATE.heading) {
+          const diff = (neededHeading - SIM_STATE.heading + 360) % 360;
+          let turnCmd = 'R';
+          if (diff === 270) turnCmd = 'L';
+          else if (diff === 180) turnCmd = 'R';
+
+          if (telCmd) telCmd.textContent = turnCmd;
+          logConsole(`TX >> ${turnCmd}\\n`, 'tx');
+          if (telState) telState.textContent = `TURNING (${turnCmd} -> ${neededHeading}°)`;
+
+          const startHeading = SIM_STATE.heading;
+          const turnSteps = 15;
+          for (let step = 1; step <= turnSteps; step++) {
+            if (SIM_STATE.stopRequested) return false;
+            let curH = (startHeading + (diff * (step / turnSteps))) % 360;
+            updateAgvTransform(startX, startY, curH);
+            await sleep(22);
+          }
+          updateAgvTransform(startX, startY, neededHeading);
+          logConsole(`RX << [MPU6050] YAW ${neededHeading.toFixed(1)}° DONE`, 'rx');
+          await sleep(100);
+        }
+
+        if (SIM_STATE.stopRequested) return false;
+
+        // Drive straight
+        const distance = Math.round(Math.hypot(dx, dy));
+        if (telCmd) telCmd.textContent = `F${distance}`;
+        logConsole(`TX >> F${distance}\\n`, 'tx');
+        if (telState) telState.textContent = `MOVING F${distance}`;
+
+        const driveSteps = 24;
+        for (let step = 1; step <= driveSteps; step++) {
+          if (SIM_STATE.stopRequested) return false;
+          const curX = startX + (dx * (step / driveSteps));
+          const curY = startY + (dy * (step / driveSteps));
+          updateAgvTransform(curX, curY, SIM_STATE.heading);
+          await sleep(30);
+        }
+
+        updateAgvTransform(targetX, targetY, SIM_STATE.heading);
+        logConsole(`RX << [ENCODER: ${distance}CM] DONE`, 'rx');
+        await sleep(100);
+        return true;
+      }
+
+      async function navigateToStation(stationKey) {
+        const dest = SIM_STATIONS[stationKey];
+        if (!dest) return;
+
+        SIM_STATE.isRunning = true;
+        SIM_STATE.stopRequested = false;
+        SIM_STATE.activeStation = stationKey;
+
+        if (simStatusBadge) simStatusBadge.textContent = `DISPATCHING: ${dest.name}`;
+        if (telTarget) telTarget.textContent = dest.name;
+        if (telState) {
+          telState.textContent = 'AUTONOMOUS NAVIGATION';
+          telState.className = 'tel-val mono-blue';
+        }
+
+        logConsole(`[MISSION] DISPATCH ROUTE TO: ${dest.name}`, 'sys');
+
+        const waypoints = getCorridorWaypoints(SIM_STATE.currentX, SIM_STATE.currentY, dest.x, dest.y);
+        
+        let trailPts = `${SIM_STATE.currentX},${SIM_STATE.currentY}`;
+        waypoints.forEach(wp => { trailPts += ` ${wp.x},${wp.y}`; });
+        if (pathTrail) pathTrail.setAttribute('points', trailPts);
+
+        for (const wp of waypoints) {
+          if (SIM_STATE.stopRequested) break;
+          const ok = await executeMoveLeg(wp.x, wp.y);
+          if (!ok) break;
+        }
+
+        if (SIM_STATE.stopRequested) {
+          logConsole('TX >> X\\n', 'tx');
+          logConsole('RX << [MOTOR H-BRIDGE DISABLE] STOPPED', 'err');
+          if (simStatusBadge) simStatusBadge.textContent = 'STATUS: EMERGENCY STOPPED';
+          if (telState) {
+            telState.textContent = 'EMERGENCY STOP (X)';
+            telState.className = 'tel-val err';
+          }
+          if (telCmd) telCmd.textContent = 'X';
+          if (pathTrail) pathTrail.setAttribute('points', '');
+          SIM_STATE.isRunning = false;
+          return;
+        }
+
+        // Arrived at destination
+        if (pathTrail) pathTrail.setAttribute('points', '');
+        if (simStatusBadge) simStatusBadge.textContent = `ARRIVED: ${dest.name}`;
+        if (telState) {
+          telState.textContent = 'STATIONARY DOCKED';
+          telState.className = 'tel-val pass';
+        }
+
+        if (dest.sortCmd) {
+          await sleep(200);
+          if (telCmd) telCmd.textContent = dest.sortCmd;
+          logConsole(`TX >> ${dest.sortCmd}\\n`, 'tx');
+          if (telState) telState.textContent = `CLASSIFYING WASTE [${dest.sortCmd}]`;
+          await sleep(550);
+          logConsole(`RX << [CAROUSEL INDEXED: ${dest.sortCmd}] DONE`, 'rx');
+          if (telState) telState.textContent = 'SORT CYCLE COMPLETE';
+        }
+
+        logConsole(`[MISSION] COMPLETED AT ${dest.name}`, 'sys');
+        SIM_STATE.isRunning = false;
+      }
+
+      // Mission Buttons Wire-up
+      const btnPatrol = document.getElementById('btn-mission-patrol');
+      const btnBiohazard = document.getElementById('btn-mission-biohazard');
+      const btnDock = document.getElementById('btn-mission-dock');
+      const btnStop = document.getElementById('btn-mission-stop');
+
+      if (btnPatrol) {
+        btnPatrol.addEventListener('click', async () => {
+          if (SIM_STATE.isRunning) return;
+          logConsole('--- INITIATING WARD PATROL MISSION ---', 'sys');
+          const sequence = ['bed1', 'bed2', 'bed3', 'disposal', 'dock'];
+          for (const st of sequence) {
+            if (SIM_STATE.stopRequested) break;
+            await navigateToStation(st);
+            if (SIM_STATE.stopRequested) break;
+            await sleep(700);
+          }
+        });
+      }
+
+      if (btnBiohazard) {
+        btnBiohazard.addEventListener('click', async () => {
+          if (SIM_STATE.isRunning) return;
+          logConsole('--- URGENT ICU BIOHAZARD CALL ---', 'sys');
+          await navigateToStation('bed2');
+          if (!SIM_STATE.stopRequested) {
+            await sleep(800);
+            await navigateToStation('disposal');
+            await sleep(500);
+            await navigateToStation('dock');
+          }
+        });
+      }
+
+      if (btnDock) {
+        btnDock.addEventListener('click', () => {
+          navigateToStation('dock');
+        });
+      }
+
+      if (btnStop) {
+        btnStop.addEventListener('click', () => {
+          SIM_STATE.stopRequested = true;
+        });
+      }
+
+      document.querySelectorAll('.map-station-node').forEach((node) => {
+        node.addEventListener('click', () => {
+          if (SIM_STATE.isRunning) return;
+          const st = node.getAttribute('data-station');
+          navigateToStation(st);
+        });
+      });
 
       // ------------------------------------------------------------------------
       // Initialize
