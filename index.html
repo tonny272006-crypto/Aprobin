@@ -82,7 +82,7 @@
     .report-nav {
       position: sticky;
       top: 0;
-      height: 58px;
+      height: 44px;
       background: rgba(10, 10, 10, 0.94);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
@@ -90,32 +90,36 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 28px;
+      padding: 0 18px;
       z-index: 100;
       user-select: none;
+      white-space: nowrap;
+      flex-wrap: nowrap;
+      gap: 16px;
     }
 
     .nav-left {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 10px;
+      flex-shrink: 0;
     }
 
     .nav-brand {
-      font-size: 14.5px;
+      font-size: 13px;
       font-weight: 600;
-      letter-spacing: 0.8px;
+      letter-spacing: 0.6px;
       color: #FFFFFF;
       text-transform: uppercase;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .nav-tag {
       font-family: var(--font-mono);
-      font-size: 11px;
-      padding: 3px 8px;
+      font-size: 9.5px;
+      padding: 2px 6px;
       border-radius: 3px;
       background: var(--accent-blue-subtle);
       border: 1px solid rgba(74, 117, 230, 0.35);
@@ -127,15 +131,24 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 14px;
+      white-space: nowrap;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .nav-links::-webkit-scrollbar {
+      display: none;
     }
 
     .nav-link {
       color: var(--text-muted);
       text-decoration: none;
       font-family: var(--font-mono);
-      font-size: 12.5px;
-      letter-spacing: 0.4px;
+      font-size: 11px;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
       transition: color 0.15s ease;
     }
 
@@ -150,7 +163,8 @@
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 8px;
+      flex-shrink: 0;
     }
 
     .btn-nav {
@@ -158,13 +172,14 @@
       border: 1px solid var(--border-dark);
       color: var(--text-main);
       font-family: var(--font-mono);
-      font-size: 12px;
-      padding: 6px 14px;
+      font-size: 11px;
+      padding: 4px 10px;
       border-radius: 4px;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
+      white-space: nowrap;
       transition: all 0.2s ease;
       text-decoration: none;
     }
@@ -1104,24 +1119,24 @@
     </div>
 
     <div class="nav-links">
-      <a href="#section-3d" class="nav-link active">01 3D WORKSPACE</a>
-      <a href="#section-summary" class="nav-link">02 SPECIFICATIONS</a>
-      <a href="#section-sheets" class="nav-link">03 CUT SHEETS</a>
-      <a href="#section-nest" class="nav-link">04 NEST LAYOUT</a>
-      <a href="#section-mission" class="nav-link">05 MISSION CONTROL</a>
-      <a href="#section-sorter" class="nav-link">06 SORTER DEMO</a>
+      <a href="#section-3d" class="nav-link active">01 3D VIEW</a>
+      <a href="#section-summary" class="nav-link">02 SPECS</a>
+      <a href="#section-sheets" class="nav-link">03 SHEETS</a>
+      <a href="#section-nest" class="nav-link">04 NEST</a>
+      <a href="#section-mission" class="nav-link">05 MISSION</a>
+      <a href="#section-sorter" class="nav-link">06 SORTER</a>
       <a href="#section-roadmap" class="nav-link">07 ROADMAP</a>
     </div>
 
     <div class="nav-actions">
       <div class="file-input-wrapper" style="position:relative; overflow:hidden;">
         <button class="btn-nav">
-          Load Custom STL
+          Load STL
         </button>
         <input type="file" id="stl-file-picker" accept=".stl" class="file-input-hidden">
       </div>
       <button class="btn-nav primary" id="btn-export-blueprint">
-        Export Blueprint
+        Export
       </button>
     </div>
   </nav>
